@@ -33,8 +33,18 @@ def generate_page(basepath, from_path, template_path, dest_path):
     template = template.replace("{{ Title }}", title)
     template = template.replace("{{ Content }}", md_to_html)
 
-    template = template.replace("href=/", f"href={basepath}")
-    template = template.replace("src=/", f"src={basepath}")
+    template = _fix_basepaths(template, basepath)
 
     with open(dest_path, "w") as d:
         d.write(template)
+
+
+def _fix_basepaths(html: str, basepath: str) -> str:
+    if not basepath.endswith("/"):
+        basepath += "/"
+
+    html = html.replace('href="/', f'href="{basepath}')
+    html = html.replace("href='/", f"href='{basepath}")
+    html = html.replace('src="/', f'src="{basepath}')
+    html = html.replace("src='/", f"src='{basepath}")
+    return html
