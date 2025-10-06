@@ -11,8 +11,10 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 
         split_text = node.text.split(delimiter)
 
+        # If we don't have paired delimiters, leave the node unchanged for robustness
         if len(split_text) % 2 == 0:
-            raise Exception("No pair delimiter found, invalid syntax")
+            new_nodes.append(node)
+            continue
 
         for i, word in enumerate(split_text):
             if i % 2 == 0:
