@@ -34,8 +34,13 @@ def generate_page(basepath, from_path, template_path, dest_path):
     template = template.replace("{{ Title }}", title)
     template = template.replace("{{ Content }}", md_to_html)
 
-    template = template.replace('href="/', f'href="{basepath}')
-    template = template.replace('src="/', f'src="{basepath}')
+    # Only rewrite root-relative href/src that do NOT already contain the basepath
+    if basepath != "/":
+        base_no_slash = re.escape(basepath.lstrip("/"))
+        href_pattern = rf'href="/(?!{base_no_slash})'
+        src_pattern = rf'src="/(?!{base_no_slash})'
+        template = re.sub(href_pattern, f'href="{basepath}', template)
+        template = re.sub(src_pattern, f'src="{basepath}', template)
 
     with open(dest_path, "w") as d:
         d.write(template)
