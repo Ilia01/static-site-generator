@@ -75,10 +75,21 @@ Run tests with:
 
 ### 🚀 Usage
 
-Run the main application:
+Run the local dev server (serves from `docs/` at http://localhost:8888):
 ```bash
 ./main.sh
 ```
+
+Build for production with a custom base path (for GitHub Pages):
+```bash
+# Replace REPO_NAME with your GitHub repository name
+./build.sh
+```
+The build script runs:
+```bash
+python3 src/main.py "/REPO_NAME/"
+```
+If no base path is provided to `main.py`, it defaults to `/` for local testing.
 
 ## Project Structure
 
@@ -95,7 +106,35 @@ src/
 │   ├── text_textnodes.py    # Text processing pipeline
 │   └── node_to_html.py      # HTML conversion utilities
 └── test/                # Unit test suite
+
+content/                 # Markdown source content
+static/                  # Static assets copied to docs/
+docs/                    # Generated site output (GitHub Pages root)
+template.html            # HTML template with {{ Title }} and {{ Content }}
+build.sh                 # Production build (uses basepath "/REPO_NAME/")
+main.sh                  # Local build + serve at http://localhost:8888
 ```
+
+## GitHub Pages Deployment
+
+1. Ensure your site builds into the `docs/` directory:
+   - `src/main.py` copies `static/` into `docs/` and generates pages from `content/` into `docs/`.
+   - Links and assets using absolute-root paths are rewritten during generation:
+     - `href="/..."` becomes `href="{basepath}..."`
+     - `src="/..."` becomes `src="{basepath}..."`
+2. Build the site with a base path matching your repository name:
+   - Example: `python3 src/main.py "/static-site-generator/"`
+   - Or simply run: `./build.sh`
+3. Push the generated `docs/` to the `main` branch.
+4. On GitHub: Settings → Pages → Build and deployment
+   - Source: `Deploy from a branch`
+   - Branch: `main` and folder `docs`
+5. Wait for Pages to deploy. Your site will be available at:
+   - `https://<your-username>.github.io/<REPO_NAME>/`
+
+Notes:
+- Local development defaults to base path `/`.
+- For GitHub Pages, always build with base path `/<REPO_NAME>/` so absolute root references resolve correctly.
 
 ## Development Status
 
