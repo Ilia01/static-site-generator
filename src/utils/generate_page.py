@@ -1,6 +1,7 @@
 from utils.markdown_to_htmlnode import markdown_to_html_node
 from utils.extract_title import extract_title
 import os
+import re
 
 
 def generate_page(basepath, from_path, template_path, dest_path):
@@ -15,7 +16,19 @@ def generate_page(basepath, from_path, template_path, dest_path):
     with open(template_path, "r") as t:
         template = t.read()
 
-    md_to_html = markdown_to_html_node(markdown).to_html()
+    # Remove YAML frontmatter from the rendered content, but still allow title extraction
+    def _strip_frontmatter(md: str) -> str:
+        lines = md.split("\n")
+        if lines and lines[0].strip() == "---":
+            # find the next '---' line and drop everything up to and including it
+            for i, line in enumerate(lines[1:], start=1):
+                if line.strip() == "---":
+                    return "\n".join(lines[i + 1 :])
+        return md
+
+    content_md = _strip_frontmatter(markdown)
+
+    md_to_html = markdown_to_html_node(content_md).to_html()
     title = extract_title(markdown)
 
     template = template.replace("{{ Title }}", title)
