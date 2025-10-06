@@ -78,12 +78,13 @@ def _unordered_list_to_html(block):
     lines = block.split("\n")
     list_children = []
     for line in lines:
-        if line.startswith("- "):
-            item_text = line[2:].strip()
-        elif line.startswith("* "):
-            item_text = line[2:].strip()
+        s = line.lstrip()
+        if s.startswith("- "):
+            item_text = s[2:].strip()
+        elif s.startswith("* "):
+            item_text = s[2:].strip()
         else:
-            item_text = line.strip()
+            item_text = s.strip()
 
         html_children = [
             text_node_to_html_node(node) for node in text_to_textnodes(item_text)
@@ -96,11 +97,12 @@ def _unordered_list_to_html(block):
 def _ordered_list_to_html(block):
     items = []
     for line in block.split("\n"):
-        p = line.find(".")
+        s = line.lstrip()
+        p = s.find(".")
         if p != -1:
-            item = line[p + 1 :].lstrip()
+            item = s[p + 1 :].lstrip()
         else:
-            item = line.lstrip()
+            item = s.lstrip()
 
         html_children = [text_node_to_html_node(n) for n in text_to_textnodes(item)]
         items.append(ParentNode("li", html_children))

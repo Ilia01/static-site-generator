@@ -62,7 +62,8 @@ def is_unordered_list(block):
     """
     lines = block.split("\n")
     for line in lines:
-        if not line.startswith("- "):
+        s = line.lstrip()
+        if not (s.startswith("- ") or s.startswith("* ")):
             return False
     return True
 
@@ -76,7 +77,8 @@ def is_ordered_list(block):
     lines = block.split("\n")
     i = 1
     for line in lines:
-        if not line.startswith(f"{i}. "):
+        s = line.lstrip()
+        if not s.startswith(f"{i}. "):
             return False
         i += 1
     return True
