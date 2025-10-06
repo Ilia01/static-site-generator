@@ -76,12 +76,19 @@ def _quote_to_html(block):
 
 def _unordered_list_to_html(block):
     lines = block.split("\n")
-    list_children = []
+
+    root = ParentNode("ul", [])
+    stack = [(0, root)]  # (level, node)
+
+    def get_level(line: str) -> int:
+        indent = len(line) - len(line.lstrip(" "))
+        return indent // 2
+
     for line in lines:
+        level = get_level(line)
         s = line.lstrip()
-        if s.startswith("- "):
-            item_text = s[2:].strip()
-        elif s.startswith("* "):
+
+        if s.startswith("- ") or s.startswith("* "):
             item_text = s[2:].strip()
         else:
             item_text = s.strip()
@@ -89,14 +96,39 @@ def _unordered_list_to_html(block):
         html_children = [
             text_node_to_html_node(node) for node in text_to_textnodes(item_text)
         ]
-        list_children.append(ParentNode("li", html_children))
+        li = ParentNode("li", html_children)
 
-    return ParentNode("ul", list_children)
+        # adjust stack to current level
+        while stack and stack[-1][0] > level:
+            stack.pop()
+        while stack[-1][0] < level:
+            # create a new nested <ul> inside the last li of the current list
+            parent_ul = stack[-1][1]
+            if not parent_ul.children:
+                # create an empty li to host the nested list if needed
+                parent_ul.children.append(ParentNode("li", []))
+            last_li = parent_ul.children[-1]
+            nested_ul = ParentNode("ul", [])
+            last_li.children.append(nested_ul)
+            stack.append((stack[-1][0] + 1, nested_ul))
+
+        stack[-1][1].children.append(li)
+
+    return root
 
 
 def _ordered_list_to_html(block):
-    items = []
-    for line in block.split("\n"):
+    lines = block.split("\n")
+
+    root = ParentNode("ol", [])
+    stack = [(0, root)]
+
+    def get_level(line: str) -> int:
+        indent = len(line) - len(line.lstrip(" "))
+        return indent // 2
+
+    for line in lines:
+        level = get_level(line)
         s = line.lstrip()
         p = s.find(".")
         if p != -1:
@@ -105,5 +137,19 @@ def _ordered_list_to_html(block):
             item = s.lstrip()
 
         html_children = [text_node_to_html_node(n) for n in text_to_textnodes(item)]
-        items.append(ParentNode("li", html_children))
-    return ParentNode("ol", items)
+        li = ParentNode("li", html_children)
+
+        while stack and stack[-1][0] > level:
+            stack.pop()
+        while stack[-1][0] < level:
+            parent_ol = stack[-1][1]
+            if not parent_ol.children:
+                parent_ol.children.append(ParentNode("li", []))
+            last_li = parent_ol.children[-1]
+            nested_ol = ParentNode("ol", [])
+            last_li.children.append(nested_ol)
+            stack.append((stack[-1][0] + 1, nested_ol))
+
+        stack[-1][1].children.append(li)
+
+    return root
