@@ -102,10 +102,8 @@ def _unordered_list_to_html(block):
         while stack and stack[-1][0] > level:
             stack.pop()
         while stack[-1][0] < level:
-            # create a new nested <ul> inside the last li of the current list
             parent_ul = stack[-1][1]
             if not parent_ul.children:
-                # create an empty li to host the nested list if needed
                 parent_ul.children.append(ParentNode("li", []))
             last_li = parent_ul.children[-1]
             nested_ul = ParentNode("ul", [])
