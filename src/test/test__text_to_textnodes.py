@@ -1,15 +1,15 @@
 import unittest
 from unittest.mock import patch, Mock
 
-from src.textnode import TextType, TextNode
-from src.utils.text_textnodes import text_to_textnodes
+from textnode import TextType, TextNode
+from utils.text_textnodes import text_to_textnodes
 
 
 class TestTextToTextNodes(unittest.TestCase):
 
-    @patch("src.utils.split_nodes.split_nodes_delimiter")
-    @patch("src.utils.split_nodes.split_nodes_link")
-    @patch("src.utils.split_nodes.split_nodes_image")
+    @patch(" utils.split_nodes.split_nodes_delimiter")
+    @patch(" utils.split_nodes.split_nodes_link")
+    @patch(" utils.split_nodes.split_nodes_image")
     def test_text_to_textnodes_basic(
         self, mock_split_image, mock_split_link, mock_split_delimiter
     ):
@@ -25,9 +25,9 @@ class TestTextToTextNodes(unittest.TestCase):
 
         self.assertEqual(result, [initial_node])
 
-    @patch("src.utils.split_nodes.split_nodes_delimiter")
-    @patch("src.utils.split_nodes.split_nodes_link")
-    @patch("src.utils.split_nodes.split_nodes_image")
+    @patch(" utils.split_nodes.split_nodes_delimiter")
+    @patch(" utils.split_nodes.split_nodes_link")
+    @patch(" utils.split_nodes.split_nodes_image")
     def test_text_to_textnodes_with_image(
         self, mock_split_image, mock_split_link, mock_split_delimiter
     ):
@@ -44,9 +44,9 @@ class TestTextToTextNodes(unittest.TestCase):
 
         self.assertEqual(result, [text_node, image_node])
 
-    @patch("src.utils.split_nodes.split_nodes_delimiter")
-    @patch("src.utils.split_nodes.split_nodes_link")
-    @patch("src.utils.split_nodes.split_nodes_image")
+    @patch(" utils.split_nodes.split_nodes_delimiter")
+    @patch(" utils.split_nodes.split_nodes_link")
+    @patch(" utils.split_nodes.split_nodes_image")
     def test_text_to_textnodes_with_link(
         self, mock_split_image, mock_split_link, mock_split_delimiter
     ):
@@ -63,9 +63,9 @@ class TestTextToTextNodes(unittest.TestCase):
 
         self.assertEqual(result, [text_node, link_node])
 
-    @patch("src.utils.split_nodes.split_nodes_delimiter")
-    @patch("src.utils.split_nodes.split_nodes_link")
-    @patch("src.utils.split_nodes.split_nodes_image")
+    @patch(" utils.split_nodes.split_nodes_delimiter")
+    @patch(" utils.split_nodes.split_nodes_link")
+    @patch(" utils.split_nodes.split_nodes_image")
     def test_text_to_textnodes_with_bold(
         self, mock_split_image, mock_split_link, mock_split_delimiter
     ):
@@ -83,9 +83,9 @@ class TestTextToTextNodes(unittest.TestCase):
 
         self.assertEqual(result, [text_node1, bold_node, text_node2])
 
-    @patch("src.utils.split_nodes.split_nodes_delimiter")
-    @patch("src.utils.split_nodes.split_nodes_link")
-    @patch("src.utils.split_nodes.split_nodes_image")
+    @patch(" utils.split_nodes.split_nodes_delimiter")
+    @patch(" utils.split_nodes.split_nodes_link")
+    @patch(" utils.split_nodes.split_nodes_image")
     def test_text_to_textnodes_full_monty(
         self, mock_split_image, mock_split_link, mock_split_delimiter
     ):

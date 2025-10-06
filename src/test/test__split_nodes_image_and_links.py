@@ -1,15 +1,15 @@
 import unittest
 from unittest.mock import patch
 
-from src.utils.split_nodes import split_nodes_image, split_nodes_link
-from src.textnode import TextType, TextNode
+from utils.split_nodes import split_nodes_image, split_nodes_link
+from textnode import TextType, TextNode
 
 
 class TestSplitNodes(unittest.TestCase):
 
     # --- Tests for split_nodes_image ---
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_single(self, mock_extract_images):
         """Test splitting a single node with one image."""
         mock_extract_images.return_value = [("img", "url")]
@@ -21,7 +21,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_image(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_multiple(self, mock_extract_images):
         """Test splitting a single node with multiple images."""
         mock_extract_images.return_value = [("img1", "url1"), ("img2", "url2")]
@@ -33,7 +33,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_image(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_no_image(self, mock_extract_images):
         """Test a node with no image markdown."""
         mock_extract_images.return_value = []
@@ -41,7 +41,7 @@ class TestSplitNodes(unittest.TestCase):
         expected = [TextNode("text with no images", TextType.TEXT)]
         self.assertEqual(split_nodes_image(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_multiple_nodes(self, mock_extract_images):
         """Test splitting a list of nodes where some have images."""
         mock_extract_images.side_effect = [[("img1", "url1")], [], [("img2", "url2")]]
@@ -60,7 +60,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_image(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_existing_node(self, mock_extract_images):
         """Test that non-text nodes are passed through unchanged."""
         mock_extract_images.side_effect = [[("img", "url")], [], []]
@@ -79,7 +79,7 @@ class TestSplitNodes(unittest.TestCase):
 
     # --- Tests for split_nodes_link ---
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_single(self, mock_extract_links):
         """Test splitting a single node with one link."""
         mock_extract_links.return_value = [("link", "url")]
@@ -90,7 +90,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_link(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_multiple(self, mock_extract_links):
         """Test splitting a single node with multiple links."""
         mock_extract_links.return_value = [("link1", "url1"), ("link2", "url2")]
@@ -102,7 +102,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_link(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_no_link(self, mock_extract_links):
         """Test a node with no link markdown."""
         mock_extract_links.return_value = []
@@ -110,7 +110,7 @@ class TestSplitNodes(unittest.TestCase):
         expected = [TextNode("text with no links", TextType.TEXT)]
         self.assertEqual(split_nodes_link(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_multiple_nodes(self, mock_extract_links):
         """Test splitting a list of nodes where some have links."""
         mock_extract_links.side_effect = [[("link1", "url1")], [], [("link2", "url2")]]
@@ -129,7 +129,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_link(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_existing_node(self, mock_extract_links):
         """Test that non-text nodes are passed through unchanged."""
         mock_extract_links.side_effect = [[("link", "url")], [], []]
@@ -148,7 +148,7 @@ class TestSplitNodes(unittest.TestCase):
 
     # --- Additional Tests for Edge Cases ---
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_multiple_interleaved(self, mock_extract_images):
         """Test multiple interleaved images."""
         mock_extract_images.return_value = [
@@ -172,7 +172,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_image(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_multiple_interleaved(self, mock_extract_links):
         """Test multiple interleaved links."""
         mock_extract_links.return_value = [
@@ -196,7 +196,7 @@ class TestSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(split_nodes_link(old_nodes), expected)
 
-    @patch("src.utils.split_nodes.extract_markdown_images")
+    @patch(" utils.split_nodes.extract_markdown_images")
     def test_split_nodes_image_no_match_returns_same_object(self, mock_extract_images):
         """Test that if no match is found, the original node object is returned."""
         mock_extract_images.return_value = []
@@ -206,7 +206,7 @@ class TestSplitNodes(unittest.TestCase):
         self.assertEqual(result, [node])
         self.assertIs(result[0], node)
 
-    @patch("src.utils.split_nodes.extract_markdown_links")
+    @patch(" utils.split_nodes.extract_markdown_links")
     def test_split_nodes_link_no_match_returns_same_object(self, mock_extract_links):
         """Test that if no match is found, the original node object is returned."""
         mock_extract_links.return_value = []

@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from src.leafnode import LeafNode
-from src.textnode import TextNode, TextType
+from leafnode import LeafNode
+from textnode import TextNode, TextType
 
 
-from src.utils.node_to_html import text_node_to_html_node
+from utils.node_to_html import text_node_to_html_node
 
 
 class TestTextNodeToHtmlNode(unittest.TestCase):

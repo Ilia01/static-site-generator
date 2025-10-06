@@ -1,9 +1,9 @@
-from src.utils.split_nodes import (
+from utils.split_nodes import (
     split_nodes_delimiter,
     split_nodes_image,
     split_nodes_link,
 )
-from src.textnode import TextNode, TextType
+from textnode import TextNode, TextType
 
 
 def text_to_textnodes(text):

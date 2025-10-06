@@ -1,5 +1,5 @@
-from src.leafnode import LeafNode
-from src.textnode import TextType, TextNode
+from leafnode import LeafNode
+from textnode import TextType, TextNode
 
 CONVERSION_MAP = {
     TextType.TEXT: lambda node: LeafNode(tag=None, value=node.text),
