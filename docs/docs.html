@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Documentation</title>
   <meta name="description" content="A minimal, fast static site generator in Python." />
-  <link href="/index.css" rel="stylesheet" />
+  <link href="/static-site-generator/index.css" rel="stylesheet" />
   <script>
     // Theme toggle
     (function(){
@@ -22,11 +22,11 @@
 
   <header class="site-header">
     <div class="container" role="navigation" aria-label="Main">
-      <a class="brand" href="/">Ilia</a>
+      <a class="brand" href="/static-site-generator/">Ilia</a>
       <nav class="nav">
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/docs/index.html">Docs</a>
+        <a href="/static-site-generator/">Home</a>
+        <a href="/static-site-generator/about.html">About</a>
+        <a href="/static-site-generator/docs/index.html">Docs</a>
         <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </nav>
     </div>
@@ -34,11 +34,11 @@
 
   <main id="main" role="main">
     <article><div><h1>Docs</h1><p>This project converts Markdown in <code>content/</code> into static HTML in <code>docs/</code> using a simple Python pipeline.</p><h2>Install</h2><pre><code>bash
-git clone https://github.com/<you>/static-site-generator
+git clone https://github.com/Ilia01/static-site-generator
 cd static-site-generator</code></pre><p>Python 3.10+ recommended. No external dependencies.</p><h2>Develop locally</h2><pre><code>bash
 ./main.sh</code></pre><ul><li>Builds the site into <code>docs/</code></li><li>Serves <code>docs/</code> at <code>http://localhost:8888</code></li></ul><h2>Build for GitHub Pages</h2><pre><code>bash
 # Replace REPO_NAME with your repository name
-./build.sh</code></pre><p>This runs <code>python3 src/main.py "/REPO_NAME/"</code>, which rewrites root-relative <code>href="/…"</code> and <code>src="/…"</code> to include your base path so assets and links work on Pages.</p><h2>Content structure</h2><ul><li>Put Markdown files in <code>content/</code></li><li>Nested folders are preserved in <code>docs/</code></li><li>Files ending in <code>.md</code> become <code>.html</code></li></ul><p>Examples:</p><ul><li><code>content/index.md</code> → <code>docs/index.html</code></li><li><code>content/about.md</code> → <code>docs/about.html</code></li><li><code>content/blog/first-post.md</code> → <code>docs/blog/first-post.html</code></li></ul><h2>Frontmatter and titles</h2><p>Pages can optionally start with YAML frontmatter:</p><pre><code>yaml
+./build.sh</code></pre><p>This runs <code>python3 src/main.py "/REPO_NAME/"</code>, which rewrites root-relative <code>href="/static-site-generator/…"</code> and <code>src="/static-site-generator/…"</code> to include your base path so assets and links work on Pages.</p><h2>Content structure</h2><ul><li>Put Markdown files in <code>content/</code></li><li>Nested folders are preserved in <code>docs/</code></li><li>Files ending in <code>.md</code> become <code>.html</code></li></ul><p>Examples:</p><ul><li><code>content/index.md</code> → <code>docs/index.html</code></li><li><code>content/about.md</code> → <code>docs/about.html</code></li><li><code>content/blog/first-post.md</code> → <code>docs/blog/first-post.html</code></li></ul><h2>Frontmatter and titles</h2><p>Pages can optionally start with YAML frontmatter:</p><pre><code>yaml
 ---
 title: My Page
 date: 2025-10-06

@@ -11,7 +11,7 @@ This project converts Markdown in `content/` into static HTML in `docs/` using a
 ## Install
 
 ```bash
-git clone https://github.com/<you>/static-site-generator
+git clone https://github.com/Ilia01/static-site-generator
 cd static-site-generator
 ```
 
