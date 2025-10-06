@@ -178,8 +178,31 @@ All components are thoroughly tested and ready for integration into a larger sta
 
 ## Next Steps
 
-Potential future enhancements could include:
-- File system integration for reading/writing markdown files
-- Template system for HTML page generation
-- Command-line interface for batch processing
-- Support for additional markdown features (headers, lists, etc.)
+Planned improvements and nice-to-haves:
+
+- Content features:
+  - Pagination for blog index and archives
+  - Automatic blog index generation and per-tag listing pages
+  - RSS/Atom feed and `sitemap.xml`
+  - Draft posts (skip from production builds)
+  - 404 page and basic search (client-side)
+
+- HTML/SEO:
+  - Add meta tags (description, OpenGraph/Twitter)
+  - Canonical URLs and breadcrumbs
+  - Accessible navigation and skip links
+
+- Build system:
+  - Incremental builds (only rebuild changed pages)
+  - Cache busting for assets (hash filenames)
+  - Validate internal links during build
+  - Config file (e.g., `config.json`) for site title, basepath, nav
+
+- Markdown support:
+  - Headings hierarchy, lists, blockquotes, code blocks with syntax highlighting
+  - Tables and footnotes
+
+- Tooling/CI:
+  - GitHub Actions workflow to run tests and build on push
+  - Auto-deploy to Pages on `main` with basepath configured
+  - Pre-commit hooks (format, lint, tests)
