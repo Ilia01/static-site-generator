@@ -7,6 +7,14 @@
   <title>Future Ideas and Roadmap</title>
   <meta name="description" content="A minimal, fast static site generator in Python." />
   <link href="/index.css" rel="stylesheet" />
+  <script>
+    // Theme toggle
+    (function(){
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') document.documentElement.dataset.theme = 'dark';
+      if (theme === 'light') document.documentElement.dataset.theme = 'light';
+    })();
+  </script>
 </head>
 
 <body>
@@ -18,7 +26,8 @@
       <nav class="nav">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
-        <a href="/docs.html">Docs</a>
+        <a href="/docs/index.html">Docs</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </nav>
     </div>
   </header>
@@ -39,6 +48,31 @@
     }
     .visually-hidden-focusable:focus { position: static; width: auto; height: auto; margin: 0; clip: auto; overflow: visible; }
   </style>
+  <script>
+    // Copy buttons for code blocks
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre').forEach((pre) => {
+        const btn = document.createElement('button');
+        btn.textContent = 'Copy';
+        btn.className = 'copy-btn';
+        btn.addEventListener('click', async () => {
+          const code = pre.innerText;
+          try { await navigator.clipboard.writeText(code); btn.textContent = 'Copied'; setTimeout(()=>btn.textContent='Copy', 1200); } catch(e) {}
+        });
+        pre.appendChild(btn);
+      });
+
+      const toggle = document.getElementById('theme-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const current = document.documentElement.dataset.theme;
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem('theme', next);
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>

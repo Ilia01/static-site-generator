@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About This Project</title>
+  <title>Themes</title>
   <meta name="description" content="A minimal, fast static site generator in Python." />
   <link href="/index.css" rel="stylesheet" />
   <script>
@@ -33,7 +33,12 @@
   </header>
 
   <main id="main" role="main">
-    <article><div><h1>About</h1><p>I built this static site generator because I love understanding how things work under the hood. Instead of reaching for a framework, I wanted to design the parsing, node model, and generation pipeline myself in Python.</p><h2>Why build my own tool?</h2><ul><li>I learn best by making. Building this from scratch forced me to get the details right: parsing, data modeling, HTML generation, link handling, and the overall developer experience.</li><li>I wanted something small, fast, and human. No webpack, no magic—just clean Python and a simple template.</li></ul><h2>What I built</h2><ul><li>A typed node system that turns Markdown into a structured tree, then into HTML</li><li>A generator that walks the <code>content/</code> directory and writes to <code>docs/</code></li><li>A base path rewriter so the site publishes cleanly to GitHub Pages</li><li>A tiny template system with <code>{{ Title }}</code> and <code>{{ Content }}</code> placeholders</li></ul><h2>What I learned</h2><ul><li>How to design small, testable units (text nodes → html nodes → renderer)</li><li>The value of predictable content conventions (one heading per page, optional YAML frontmatter)</li><li>The importance of ergonomics: fast rebuilds, friendly errors, and “just works” defaults</li></ul><h2>What I’m proud of</h2><ul><li>The clarity of the codebase and tests</li><li>The balance of minimalism and capability—there’s enough power to be useful without hiding behavior</li><li>The end-to-end flow: write Markdown, get a polished site, deploy with zero config</li></ul><p>If you’re curious, check the Docs for usage details—or read the blog posts to see how I approached the build.</p></div></article>
+    <article><div><h1>Themes</h1><p>This site uses CSS variables for colors and spacing. Edit <code>static/index.css</code> and adjust values under <code>:root</code> and the dark section.</p><h2>Variables</h2><pre><code>css
+:root {
+  --bg: #ffffff;
+  --fg: #0b0f19;
+  --accent: #3b82f6;
+}</code></pre><blockquote>Tip: Prefer accessible contrast ratios (AA+).</blockquote></div></article>
   </main>
 
   <footer class="site-footer">
