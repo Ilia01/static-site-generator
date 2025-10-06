@@ -1,15 +1,44 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ Title }}</title>
+  <meta name="description" content="A minimal, fast static site generator in Python." />
   <link href="/index.css" rel="stylesheet" />
 </head>
 
 <body>
-  <article>{{ Content }}</article>
+  <a href="#main" class="visually-hidden-focusable">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container" role="navigation" aria-label="Main">
+      <a class="brand" href="/">Ilia</a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/docs.html">Docs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <article>{{ Content }}</article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Built with a handmade Python static site generator.</p>
+    </div>
+  </footer>
+
+  <style>
+    .visually-hidden-focusable {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+    .visually-hidden-focusable:focus { position: static; width: auto; height: auto; margin: 0; clip: auto; overflow: visible; }
+  </style>
 </body>
 
 </html>
