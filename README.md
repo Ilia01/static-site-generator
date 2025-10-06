@@ -2,6 +2,13 @@
 
 A Python-based static site generator that converts markdown text to HTML using a node-based architecture.
 
+## Highlights
+
+- Configurable base path for GitHub Pages (e.g. `/REPO_NAME/`)
+- Generates into `docs/` for zero-config Pages deployments
+- Markdown → HTML via typed nodes with thorough unit tests
+- Simple zsh scripts for local dev and production builds
+
 ## Project Overview
 
 This project implements a markdown-to-HTML converter with a modular design that separates text parsing, node processing, and HTML generation into distinct components.
@@ -73,7 +80,7 @@ Run tests with:
 ./test.sh
 ```
 
-### 🚀 Usage
+### 🚀 Quickstart
 
 Run the local dev server (serves from `docs/` at http://localhost:8888):
 ```bash
@@ -90,6 +97,19 @@ The build script runs:
 python3 src/main.py "/REPO_NAME/"
 ```
 If no base path is provided to `main.py`, it defaults to `/` for local testing.
+
+### Commands
+
+- `./main.sh` — Build to `docs/` with basepath `/`, then serve at `http://localhost:8888`
+- `./build.sh` — Build to `docs/` with basepath `"/REPO_NAME/"`
+- `./test.sh` — Run unit tests
+
+### Configuration
+
+- Base path: first CLI argument to `src/main.py`. Examples:
+  - Local: `python3 src/main.py` → basepath `/`
+  - Pages: `python3 src/main.py "/static-site-generator/"`
+  - Any: `python3 src/main.py "/my-base/"`
 
 ## Project Structure
 
@@ -135,6 +155,16 @@ main.sh                  # Local build + serve at http://localhost:8888
 Notes:
 - Local development defaults to base path `/`.
 - For GitHub Pages, always build with base path `/<REPO_NAME>/` so absolute root references resolve correctly.
+
+## Troubleshooting
+
+- Links/assets 404 on GitHub Pages:
+  - Ensure you built with `"/<REPO_NAME>/"` base path.
+  - Verify `Settings → Pages` points to `main` / `docs`.
+- Local images not loading:
+  - Re-run `./main.sh` to rebuild and copy `static/` into `docs/`.
+- Tests failing to import modules:
+  - Run tests from repo root using `./test.sh` so `src` is on the path.
 
 ## Development Status
 
