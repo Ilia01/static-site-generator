@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ endpoint.method }} {{ endpoint.path }} - {{ info.title }}</title>
+    <link rel="stylesheet" href="css/api-docs.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>
+                <a href="index.html" style="color: var(--accent-primary); text-decoration: none;">← {{ info.title }}</a>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </h2>
+            <div style="padding: 0 1.5rem; margin-bottom: 1rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600;">All Endpoints</div>
+            {% for ep in endpoints %}
+            <a href="{{ ep.method|lower }}_{{ ep.path|replace('/', '_')|replace('{', '')|replace('}', '')|trim('_') }}.html"
+               {% if ep.path == endpoint.path and ep.method == endpoint.method %}style="background: var(--bg-tertiary); font-weight: 600;"{% endif %}>
+                {{ ep.method }} {{ ep.path }}
+            </a>
+            {% endfor %}
+        </aside>
+
+        <main class="main-content">
+            <a href="index.html" class="back-link">← Back to Overview</a>
+
+            <div class="endpoint-header">
+                <span class="method-badge method-{{ endpoint.method|lower }}">{{ endpoint.method }}</span>
+                <code class="endpoint-path">{{ endpoint.path }}</code>
+                {% if endpoint.deprecated %}
+                <span class="badge">DEPRECATED</span>
+                {% endif %}
+            </div>
+
+            {% if endpoint.summary %}
+            <div class="endpoint-summary">{{ endpoint.summary }}</div>
+            {% endif %}
+
+            {% if endpoint.description %}
+            <div class="section">
+                <p>{{ endpoint.description }}</p>
+            </div>
+            {% endif %}
+
+            {% if endpoint.parameters %}
+            <div class="section">
+                <h2>Parameters</h2>
+                <table class="param-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>In</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for param in endpoint.parameters %}
+                        <tr>
+                            <td>
+                                <span class="param-name">{{ param.name }}</span>
+                                {% if param.required %}
+                                <span class="param-required">required</span>
+                                {% endif %}
+                            </td>
+                            <td><span class="param-type">{{ param.schema.type|default('string') }}</span></td>
+                            <td>{{ param.in }}</td>
+                            <td>{{ param.description }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+
+            {% if endpoint.request_body %}
+            <div class="section">
+                <h2>Request Body</h2>
+                <p>{{ endpoint.request_body.description }}</p>
+                {% if endpoint.request_body.required %}
+                <p><span class="param-required">Required</span></p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="section">
+                <h2>Code Examples</h2>
+                <div class="code-tabs">
+                    <button class="code-tab active" onclick="showCode('curl')">cURL</button>
+                    <button class="code-tab" onclick="showCode('python')">Python</button>
+                    <button class="code-tab" onclick="showCode('javascript')">JavaScript</button>
+                </div>
+
+                <div id="curl" class="code-content active">
+                    <div class="code-block">
+                        <pre><code class="language-bash">{{ code_examples.curl }}</code></pre>
+                    </div>
+                </div>
+
+                <div id="python" class="code-content">
+                    <div class="code-block">
+                        <pre><code class="language-python">{{ code_examples.python }}</code></pre>
+                    </div>
+                </div>
+
+                <div id="javascript" class="code-content">
+                    <div class="code-block">
+                        <pre><code class="language-javascript">{{ code_examples.javascript }}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            {% if endpoint.responses %}
+            <div class="section">
+                <h2>Responses</h2>
+                {% for response in endpoint.responses %}
+                <div class="response-item">
+                    <div class="response-status {% if response.status_code|string|first == '2' %}success{% else %}error{% endif %}">
+                        {{ response.status_code }}
+                    </div>
+                    <p>{{ response.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="js/code-tabs.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>

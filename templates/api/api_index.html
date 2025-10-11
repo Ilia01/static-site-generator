@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ info.title }} - API Documentation</title>
+    <link rel="stylesheet" href="css/api-docs.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>
+                <span>{{ info.title }}</span>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </h2>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search endpoints..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <div id="searchResults" class="search-results"></div>
+            <div id="noResults" class="no-results">No results found</div>
+
+            <nav id="mainNav">
+                {% for tag, tag_endpoints in endpoints_by_tag.items() %}
+                <div class="tag-group">
+                    <div class="tag-name">{{ tag }}</div>
+                    {% for endpoint in tag_endpoints %}
+                    <a href="{{ endpoint.method|lower }}_{{ endpoint.path|replace('/', '_')|replace('{', '')|replace('}', '')|trim('_') }}.html" class="endpoint-link">
+                        <span class="method-badge method-{{ endpoint.method|lower }}">{{ endpoint.method }}</span>
+                        <span>{{ endpoint.path }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="header">
+                <h1>{{ info.title }}</h1>
+                <span class="version">v{{ info.version }}</span>
+                {% if info.description %}
+                <p class="description">{{ info.description }}</p>
+                {% endif %}
+
+                {% if servers %}
+                <div class="servers">
+                    <h3>Base URL</h3>
+                    {% for server in servers %}
+                    <div class="server-url">{{ server.url }}</div>
+                    {% if server.description %}
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">{{ server.description }}</div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="endpoints-overview">
+                <h2>Endpoints</h2>
+
+                {% for tag, tag_endpoints in endpoints_by_tag.items() %}
+                <div class="tag-section">
+                    <h3>{{ tag }}</h3>
+
+                    {% for endpoint in tag_endpoints %}
+                    <div class="endpoint-card">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-{{ endpoint.method|lower }}">{{ endpoint.method }}</span>
+                            <code class="endpoint-path">{{ endpoint.path }}</code>
+                        </div>
+                        {% if endpoint.summary %}
+                        <div class="endpoint-summary">{{ endpoint.summary }}</div>
+                        {% endif %}
+                        <a href="{{ endpoint.method|lower }}_{{ endpoint.path|replace('/', '_')|replace('{', '')|replace('}', '')|trim('_') }}.html" class="endpoint-link-button">
+                            View Details →
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script>
+        // Endpoint data for search
+        const endpoints = {{ endpoints | tojson }};
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
