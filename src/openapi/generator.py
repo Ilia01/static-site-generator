@@ -1,7 +1,12 @@
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from openapi.parser import OpenAPIParser
+from openapi.version_manager import VersionManager
+from openapi.pdf_exporter import PDFExporter
+from license.validator import LicenseValidator
+from license.features import FeatureManager, LicenseTier
+from license.config import Config
 import json
 import shutil
 
@@ -11,18 +16,42 @@ class OpenAPIDocGenerator:
     Generates HTML documentation from OpenAPI specification.
     """
 
-    def __init__(self, spec_path: str, output_dir: str, template_dir: str):
+    def __init__(self, spec_path: str = None, output_dir: str = None, template_dir: str = None,
+                 license_key: Optional[str] = None, config: Optional[Config] = None,
+                 version_manager: Optional[VersionManager] = None):
         """
         Initialize the documentation generator.
 
         Args:
-            spec_path: Path to OpenAPI spec file
+            spec_path: Path to OpenAPI spec file (for single-spec mode)
             output_dir: Directory to output generated HTML files
             template_dir: Directory containing Jinja2 templates
+            license_key: Optional license key for premium features
+            config: Optional configuration object
+            version_manager: Optional version manager for multi-version support
         """
-        self.parser = OpenAPIParser(spec_path)
-        self.output_dir = Path(output_dir)
-        self.template_dir = Path(template_dir)
+        self.output_dir = Path(output_dir) if output_dir else Path('api-docs')
+        self.template_dir = Path(template_dir) if template_dir else Path('templates/api')
+
+        # Initialize configuration
+        self.config = config or Config()
+
+        # Get license key from parameter, config, or environment
+        final_license_key = license_key or self.config.get_license_key()
+
+        # Initialize license validator and feature manager
+        self.license = LicenseValidator(final_license_key)
+        self.features = FeatureManager(self.license.get_tier())
+
+        # Initialize version manager
+        self.version_manager = version_manager
+        self.use_versioning = version_manager is not None and version_manager.has_multiple_versions()
+
+        # For backward compatibility - single spec mode
+        if spec_path and not version_manager:
+            self.parser = OpenAPIParser(spec_path)
+        else:
+            self.parser = None
 
         self.jinja_env = Environment(
             loader=FileSystemLoader(str(self.template_dir)),
@@ -31,12 +60,23 @@ class OpenAPIDocGenerator:
 
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-    def generate(self, static_dir: str = None) -> None:
+        # Print license status
+        if not self.license.is_licensed():
+            print("\n💡 Using FREE tier. Upgrade to PRO for premium features!")
+            print("   Visit: https://github.com/Ilia01/apiflow#pricing\n")
+
+        # Check version management feature
+        if self.use_versioning and not self.features.has_feature('version_management'):
+            print("\n⚠️  Version management requires PRO license. Using single version mode.")
+            self.use_versioning = False
+
+    def generate(self, static_dir: str = None, export_pdf: bool = False) -> None:
         """
         Generate all documentation pages.
 
         Args:
             static_dir: Optional path to static assets directory to copy
+            export_pdf: Export documentation to PDF (requires PRO license)
         """
         # Copy static assets if provided
         if static_dir:
@@ -44,6 +84,14 @@ class OpenAPIDocGenerator:
 
         self._generate_index()
         self._generate_endpoint_pages()
+
+        # PDF export (PRO feature)
+        if export_pdf:
+            if self.features.has_feature('pdf_export'):
+                self._export_to_pdf()
+            else:
+                print("\n⚠️  PDF export requires PRO or BUSINESS license")
+                print("   Upgrade at: https://gumroad.com/l/apiflow-pro")
 
     def _copy_static_assets(self, static_dir: str) -> None:
         """Copy CSS, JS, and other static assets to output directory."""
@@ -67,14 +115,37 @@ class OpenAPIDocGenerator:
             for js_file in js_src.glob("*.js"):
                 shutil.copy2(js_file, js_dest / js_file.name)
 
+        # Copy theme files if user has premium features
+        if self.features.has_feature('premium_themes'):
+            self._copy_theme_files(static_path)
+
+        # Print versioning status
+        if self.use_versioning:
+            print(f"✓ Version management enabled ({len(self.version_manager.versions)} versions)")
+
     def _generate_index(self) -> None:
         """Generate the main index/overview page."""
         template = self.jinja_env.get_template("api_index.html")
 
-        info = self.parser.get_info()
-        servers = self.parser.get_servers()
-        endpoints = self.parser.get_endpoints()
-        tags = self.parser.get_tags()
+        if self.use_versioning:
+            # Multi-version mode
+            default_version = self.version_manager.get_default_version()
+            info = default_version.get_info()
+            servers = default_version.get_servers()
+            endpoints = default_version.get_endpoints()
+            tags = default_version.get_tags()
+
+            # Get all versions
+            versions = self.version_manager.get_version_list()
+            default_version_label = next((v['label'] for v in versions if v['is_default']), None)
+        else:
+            # Single spec mode
+            info = self.parser.get_info()
+            servers = self.parser.get_servers()
+            endpoints = self.parser.get_endpoints()
+            tags = self.parser.get_tags()
+            versions = []
+            default_version_label = None
 
         # Group endpoints by tag
         endpoints_by_tag = self._group_endpoints_by_tag(endpoints, tags)
@@ -85,6 +156,13 @@ class OpenAPIDocGenerator:
             endpoints=endpoints,
             endpoints_by_tag=endpoints_by_tag,
             tags=tags,
+            license_tier=self.license.get_tier().value,
+            show_branding=self._should_show_branding(),
+            selected_theme=self.get_selected_theme(),
+            config=self.config,
+            versions=versions if self.use_versioning else [],
+            default_version_label=default_version_label,
+            has_versioning=self.use_versioning,
         )
 
         output_path = self.output_dir / "index.html"
@@ -109,6 +187,10 @@ class OpenAPIDocGenerator:
                 info=info,
                 code_examples=code_examples,
                 endpoints=endpoints,  # For sidebar navigation
+                license_tier=self.license.get_tier().value,
+                show_branding=self._should_show_branding(),
+                selected_theme=self.get_selected_theme(),
+                config=self.config,
             )
 
             output_path = self.output_dir / filename
@@ -274,3 +356,86 @@ class OpenAPIDocGenerator:
         code += "  .then(data => console.log(data));"
 
         return code
+
+    def _should_show_branding(self) -> bool:
+        """
+        Determine if ApiFlow branding should be shown.
+
+        Branding can be removed with PRO license or higher.
+        """
+        # Check if user has remove_branding feature
+        if self.features.has_feature('remove_branding'):
+            # Check config setting
+            return self.config.get('branding.show_apiflow_footer', False)
+
+        # Free tier always shows branding
+        return True
+
+    def _copy_theme_files(self, static_path: Path) -> None:
+        """
+        Copy premium theme files to output directory.
+
+        Only available with PRO or BUSINESS license.
+        """
+        themes_src = static_path / "themes"
+        if not themes_src.exists():
+            return
+
+        themes_dest = self.output_dir / "themes"
+        themes_dest.mkdir(exist_ok=True)
+
+        # Copy all theme files
+        for theme_file in themes_src.glob("*.css"):
+            shutil.copy2(theme_file, themes_dest / theme_file.name)
+
+        print(f"✓ Premium themes enabled ({len(list(themes_src.glob('*.css')))} themes available)")
+
+    def get_selected_theme(self) -> Optional[str]:
+        """
+        Get the selected theme name.
+
+        Returns:
+            Theme name if premium theme is selected and available, None for default
+        """
+        if not self.features.has_feature('premium_themes'):
+            return None
+
+        theme = self.config.get('theme', 'default')
+        if theme == 'default':
+            return None
+
+        # Validate theme exists
+        available_themes = ['dark-pro', 'light-pro', 'modern']
+        if theme in available_themes:
+            return theme
+
+        print(f"⚠️  Theme '{theme}' not found, using default")
+        return None
+
+    def get_license_info(self) -> Dict[str, Any]:
+        """
+        Get license information for display.
+
+        Returns:
+            Dictionary with license tier and features
+        """
+        return {
+            'tier': self.license.get_tier().value,
+            'is_licensed': self.license.is_licensed(),
+            'features': self.features.get_available_features(),
+        }
+
+    def _export_to_pdf(self) -> None:
+        """
+        Export documentation to PDF (PRO feature).
+        """
+        try:
+            exporter = PDFExporter(self.output_dir)
+            pdf_path = exporter.export_to_pdf()
+
+            if pdf_path:
+                print(f"\n✓ PDF export complete: {pdf_path}")
+                print(f"   API documentation exported to PDF format")
+        except Exception as e:
+            print(f"\n⚠️  PDF export failed: {e}")
+            print("   Documentation HTML files were still generated successfully")
