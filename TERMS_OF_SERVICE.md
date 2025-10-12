@@ -1,0 +1,413 @@
+# ApiFlow Terms of Service
+
+**Last Updated:** October 2025
+
+By using ApiFlow, you agree to these Terms of Service. Please read them carefully.
+
+---
+
+## 1. Definitions
+
+- **"ApiFlow"**: The software tool for generating API documentation from OpenAPI specifications
+- **"Source Code"**: The Python code, templates, and scripts in this repository
+- **"Generated Documentation"**: HTML, CSS, and JavaScript files created by ApiFlow
+- **"You"** or **"User"**: The person or entity using ApiFlow
+- **"We"** or **"ApiFlow"**: The creators and maintainers of ApiFlow
+- **"License Key"**: A unique code that unlocks PRO or BUSINESS features
+
+---
+
+## 2. License Tiers and Usage Rights
+
+ApiFlow offers three license tiers with different usage rights:
+
+### 2.1 FREE Tier
+
+**What's Included:**
+- ✅ Use ApiFlow to generate documentation
+- ✅ Access to default theme
+- ✅ Dark mode toggle
+- ✅ Fuzzy search functionality
+- ✅ Code examples
+- ✅ All core features
+
+**Usage Rights:**
+- ✅ **Personal projects** (your own learning, portfolio, side projects)
+- ✅ **Internal company use** (documentation for internal APIs)
+- ✅ **Open source projects** (documentation for public OSS projects)
+- ✅ **Educational purposes** (teaching, training, academic research)
+
+**Restrictions:**
+- ❌ **NO client work** - Cannot generate docs for client projects
+- ❌ **NO agency use** - Cannot use for multiple client projects
+- ❌ **NO commercial products** - Cannot sell or resell generated docs
+- ❌ **NO white-labeling** - Must keep ApiFlow attribution
+
+**Cost:** Free forever
+
+---
+
+### 2.2 PRO Tier
+
+**What's Included:**
+- ✅ Everything in FREE tier
+- ✅ 3 premium themes (Dark Pro, Light Pro, Modern)
+- ✅ Version management (multi-version docs)
+- ✅ Remove ApiFlow branding
+- ✅ PDF export functionality
+- ✅ Email support
+- ✅ Lifetime updates
+
+**Usage Rights:**
+- ✅ **Commercial projects** (your own SaaS, products, services)
+- ✅ **Internal business use** (documentation for your company's APIs)
+- ✅ **Revenue-generating projects** (APIs that make money)
+- ✅ **Multiple projects** (unlimited personal/company projects)
+
+**Restrictions:**
+- ❌ **NO client work** - Cannot generate docs as a service for clients
+- ❌ **NO agency use** - Cannot offer doc generation to multiple clients
+- ❌ **NO reselling** - Cannot sell generated docs to third parties
+- ❌ **Single entity use only** - License covers one person or one company
+
+**Cost:** $49 one-time payment (introductory price)
+
+**Important:** If you're a freelancer, agency, or contractor creating documentation for client projects, you need a BUSINESS license, not PRO.
+
+---
+
+### 2.3 BUSINESS Tier (Enterprise)
+
+**What's Included:**
+- ✅ Everything in PRO tier
+- ✅ Commercial license for client work
+- ✅ White-label customization
+- ✅ Agency/contractor rights
+- ✅ Postman collection export
+- ✅ Priority support
+- ✅ Custom feature development (optional)
+- ✅ Bulk licenses available
+
+**Usage Rights:**
+- ✅ **Client projects** (generate docs for paying clients)
+- ✅ **Agency use** (offer doc generation as a service)
+- ✅ **White-labeling** (remove all ApiFlow branding completely)
+- ✅ **Reselling** (sell generated docs as part of your services)
+- ✅ **Multiple clients** (unlimited client projects)
+- ✅ **Sublicensing** (grant usage rights to your clients)
+
+**No Restrictions:** Full commercial use for any purpose.
+
+**Cost:** Custom pricing (contact us for quote)
+
+---
+
+## 3. Source Code License
+
+The ApiFlow **source code** is licensed under the MIT License (see LICENSE file).
+
+You may:
+- ✅ View and study the code
+- ✅ Modify the code for personal use
+- ✅ Fork the repository
+- ✅ Contribute improvements (subject to acceptance)
+
+However, **generating documentation with ApiFlow** is subject to these Terms of Service, regardless of the MIT License on the source code.
+
+**Key Distinction:**
+- **Source code** = MIT License (open source)
+- **Product usage** = Tiered licensing (these terms)
+
+This dual-licensing model allows developers to learn from the code while ensuring commercial use is properly licensed.
+
+---
+
+## 4. License Validation
+
+### 4.1 License Keys
+
+PRO and BUSINESS tiers require a valid license key to unlock premium features.
+
+License keys:
+- Are validated offline (no phone-home, privacy-focused)
+- Are cached locally in `.apiflow/` directory
+- Must not be shared publicly or redistributed
+- Are tied to the purchasing entity (person or company)
+
+### 4.2 License Transfers
+
+- PRO licenses are **non-transferable** (one person or company only)
+- BUSINESS licenses **may allow transfers** (contact us for approval)
+- Selling or sharing license keys violates these terms
+
+### 4.3 Revocation
+
+We reserve the right to revoke licenses if:
+- License key is shared publicly or redistributed
+- Terms of Service are violated (e.g., using FREE for client work)
+- Fraudulent purchase or chargeback occurs
+- License is used beyond permitted scope
+
+---
+
+## 5. Generated Documentation Ownership
+
+### 5.1 Your Content
+
+You own the documentation generated by ApiFlow:
+- ✅ You retain copyright to your API specifications
+- ✅ You own the generated HTML/CSS/JS output
+- ✅ You can host documentation anywhere
+- ✅ You can modify generated files freely
+
+### 5.2 Attribution
+
+**FREE Tier:**
+- Must keep "Generated by ApiFlow" attribution in footer
+- Attribution link must remain functional
+- Removing attribution requires PRO license
+
+**PRO Tier:**
+- May remove "Generated by ApiFlow" attribution
+- No attribution required
+
+**BUSINESS Tier:**
+- Full white-labeling allowed
+- May add your own branding
+- No attribution required
+
+---
+
+## 6. Warranty Disclaimer
+
+**ApiFlow is provided "AS IS" without warranty of any kind.**
+
+We make no guarantees that:
+- ApiFlow will work perfectly for your use case
+- Generated documentation will be error-free
+- ApiFlow will parse all OpenAPI specs correctly
+- Updates won't introduce breaking changes
+
+**Use at your own risk.** We are not liable for:
+- Lost revenue or business opportunities
+- Incorrect or incomplete documentation
+- Security vulnerabilities in generated output
+- Downtime or availability issues
+
+---
+
+## 7. Limitation of Liability
+
+**Maximum liability is limited to the amount you paid for your license.**
+
+We are not liable for:
+- Indirect, incidental, or consequential damages
+- Loss of profits, data, or business opportunities
+- Damages exceeding your license purchase price
+- Issues caused by third-party tools or dependencies
+
+**If you paid $0 (FREE tier), we have zero liability.**
+
+---
+
+## 8. Refund Policy
+
+### 8.1 PRO Tier Refunds
+
+We offer a **30-day money-back guarantee** for PRO licenses:
+- Request refund within 30 days of purchase
+- No questions asked
+- Full refund to original payment method
+- License key will be deactivated
+
+### 8.2 BUSINESS Tier Refunds
+
+BUSINESS tier refunds are handled on a case-by-case basis:
+- Contact us within 30 days
+- Discuss concerns and potential solutions
+- Refunds at our discretion
+
+### 8.3 No Refund After 30 Days
+
+After 30 days, all sales are final.
+
+---
+
+## 9. Privacy and Data Collection
+
+ApiFlow is designed with privacy in mind:
+
+**What we DO:**
+- ✅ Validate license keys offline (no phone-home)
+- ✅ Cache validation in `.apiflow/` directory locally
+
+**What we DON'T do:**
+- ❌ Track your usage or analytics
+- ❌ Send telemetry data
+- ❌ Upload your API specs or generated docs
+- ❌ Require account creation or registration
+- ❌ Store personal information (beyond purchase email)
+
+See PRIVACY_POLICY.md for complete details.
+
+---
+
+## 10. Support
+
+### 10.1 Community Support (FREE)
+
+FREE tier users receive community support:
+- GitHub Issues for bug reports
+- GitHub Discussions for questions
+- Documentation and guides
+- Response time: Best effort (no SLA)
+
+### 10.2 Email Support (PRO)
+
+PRO tier users receive email support:
+- Email: support@yourdomain.com
+- Response time: Within 48 hours (business days)
+- Bug fixes and feature guidance
+- No custom development
+
+### 10.3 Priority Support (BUSINESS)
+
+BUSINESS tier users receive priority support:
+- Direct email or Slack channel
+- Response time: Within 24 hours (business days)
+- Custom feature development available
+- Phone support available (by arrangement)
+
+---
+
+## 11. Updates and Maintenance
+
+### 11.1 Lifetime Updates
+
+PRO and BUSINESS licenses include **lifetime updates**:
+- Access to all future versions
+- Bug fixes and security patches
+- New features and improvements
+- No recurring fees
+
+### 11.2 Breaking Changes
+
+We reserve the right to make breaking changes:
+- Major version updates (e.g., 2.0 → 3.0)
+- Deprecation of old features
+- Changes to license system
+
+We will provide:
+- Advance notice (when possible)
+- Migration guides
+- Reasonable transition period
+
+### 11.3 End of Life
+
+If we discontinue ApiFlow:
+- PRO/BUSINESS users keep perpetual license to last version
+- Source code remains available (MIT License)
+- Community can fork and maintain
+- No refunds for discontinued product
+
+---
+
+## 12. Acceptable Use
+
+You must NOT use ApiFlow to:
+- ❌ Generate documentation for illegal products or services
+- ❌ Violate intellectual property rights
+- ❌ Create malicious or deceptive documentation
+- ❌ Circumvent license validation systems
+- ❌ Reverse-engineer license key generation
+- ❌ Share or resell license keys
+
+Violations may result in:
+- License revocation (no refund)
+- Legal action (for severe violations)
+- Permanent ban from purchasing future licenses
+
+---
+
+## 13. Changes to Terms
+
+We may update these Terms of Service:
+- Changes will be posted to GitHub repository
+- "Last Updated" date will be modified
+- Major changes will be announced via GitHub releases
+- Continued use after changes = acceptance of new terms
+
+**Grandfathering:**
+- Existing licenses retain rights granted at purchase time
+- New restrictions won't apply retroactively (in most cases)
+- Price increases don't affect existing license holders
+
+---
+
+## 14. Termination
+
+### 14.1 You May Terminate
+
+You can stop using ApiFlow anytime:
+- No need to notify us
+- Refund only available within 30 days
+- You may continue using last downloaded version
+
+### 14.2 We May Terminate
+
+We may revoke your license if:
+- You violate these Terms of Service
+- You use FREE tier for commercial client work
+- You share or resell license keys
+- You engage in fraudulent activity
+
+Upon termination:
+- License key will be deactivated
+- No refund (except for our error)
+- You must stop using premium features
+
+---
+
+## 15. Governing Law
+
+These terms are governed by:
+- **Jurisdiction:** [Your country/state]
+- **Dispute Resolution:** Good faith negotiation first
+- **Arbitration:** If negotiation fails (details available upon request)
+- **No Class Actions:** Individual disputes only
+
+---
+
+## 16. Contact
+
+For questions about these terms:
+
+- **Email:** support@yourdomain.com
+- **GitHub Issues:** https://github.com/Ilia01/apiflow/issues
+- **GitHub Discussions:** https://github.com/Ilia01/apiflow/discussions
+
+---
+
+## 17. Summary (TL;DR)
+
+**FREE Tier:**
+- Use for personal projects, internal company use, open source
+- ❌ NO client work, NO agency use
+
+**PRO Tier ($49):**
+- Use for your own commercial projects
+- ❌ NO client work, NO agency use
+- Premium themes + version management + PDF export
+
+**BUSINESS Tier (Custom):**
+- Full commercial use including client work and agencies
+- White-labeling allowed
+- Contact us for pricing
+
+**Key Rule:** If you're making money FROM generating docs (not just documenting your own money-making product), you need BUSINESS tier.
+
+---
+
+**By using ApiFlow, you agree to these terms.**
+
+If you don't agree, please don't use ApiFlow.

@@ -332,10 +332,19 @@ python3 generate_api_docs.py --license-status
 
 ## Documentation
 
+### Technical Guides
+
 - [LICENSE_SYSTEM.md](LICENSE_SYSTEM.md) - License activation guide
 - [THEMES.md](THEMES.md) - Theme documentation
 - [VERSIONING.md](VERSIONING.md) - Version management guide
 - [DEPLOYMENT.md](DEPLOYMENT.md) - GitHub Pages deployment
+
+### Legal Documentation
+
+- [LICENSE](LICENSE) - MIT License (source code)
+- [TERMS_OF_SERVICE.md](TERMS_OF_SERVICE.md) - Usage rights and restrictions
+- [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) - Enterprise/agency licensing
+- [PRIVACY_POLICY.md](PRIVACY_POLICY.md) - Privacy and data collection
 
 ---
 
@@ -365,6 +374,16 @@ Absolutely. The generated HTML can be hosted anywhere - GitHub Pages, Netlify, V
 
 Not yet. ApiFlow generates static files you host yourself. A hosted version is on the roadmap.
 
+### Can I use this for client work?
+
+**Short answer:** Only with a BUSINESS license.
+
+- **FREE Tier:** ❌ NO client work (personal/internal use only)
+- **PRO Tier:** ❌ NO client work (your own commercial projects only)
+- **BUSINESS Tier:** ✅ YES client work (unlimited clients, agency use)
+
+If you're a freelancer, agency, or contractor generating docs for clients, you need a BUSINESS license. See [TERMS_OF_SERVICE.md](TERMS_OF_SERVICE.md) for details.
+
 ### What about refunds?
 
 We offer a 30-day money-back guarantee, no questions asked. Email support@yourdomain.com if you're not satisfied.
@@ -393,9 +412,34 @@ ApiFlow is currently in active development. We're not accepting external contrib
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+### Source Code License
 
-**Commercial use requires BUSINESS license for client projects.**
+ApiFlow source code is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
+
+You may view, study, modify, and fork the code freely under the MIT License.
+
+### Product Usage License
+
+**However, using ApiFlow to generate documentation is subject to tiered licensing:**
+
+- **FREE Tier:** Personal projects, internal company use, open source projects
+- **PRO Tier ($49):** Commercial projects (your own products), NOT for client work
+- **BUSINESS Tier (Custom):** Client work, agency use, white-labeling
+
+**Key Rule:** If you're generating documentation as a service for clients (freelancer, agency, contractor), you need a BUSINESS license, not PRO.
+
+See [TERMS_OF_SERVICE.md](TERMS_OF_SERVICE.md) for complete usage rights and restrictions.
+
+### Why Dual Licensing?
+
+This dual-licensing model allows:
+- ✅ Developers can learn from the source code (MIT)
+- ✅ Hobbyists can use FREE tier forever
+- ✅ Companies can use PRO for their own APIs
+- ✅ Agencies can use BUSINESS for client projects
+- ✅ Sustainable development while keeping code open
+
+**Questions about licensing?** See [TERMS_OF_SERVICE.md](TERMS_OF_SERVICE.md) or email support@yourdomain.com
 
 ---
 
