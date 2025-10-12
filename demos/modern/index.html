@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Store API - API Documentation</title>
+
+    <!-- Apply theme immediately to prevent flash -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS Variables (single source of truth) -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/api-docs.css">
+    
+    <!-- Premium Theme (PRO License) -->
+    <link rel="stylesheet" href="themes/modern.css">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>
+                <span>Pet Store API</span>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <i class="fas fa-moon theme-icon"></i>
+                </button>
+            </h2>
+
+            
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search endpoints..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <div id="searchResults" class="search-results"></div>
+            <div id="noResults" class="no-results">No results found</div>
+
+            <nav id="mainNav">
+                
+                <div class="tag-group">
+                    <div class="tag-name">pets</div>
+                    
+                    <a href="get_pets.html" class="endpoint-link">
+                        <span class="method-badge method-get">GET</span>
+                        <span>/pets</span>
+                    </a>
+                    
+                    <a href="post_pets.html" class="endpoint-link">
+                        <span class="method-badge method-post">POST</span>
+                        <span>/pets</span>
+                    </a>
+                    
+                    <a href="get_pets_petId.html" class="endpoint-link">
+                        <span class="method-badge method-get">GET</span>
+                        <span>/pets/{petId}</span>
+                    </a>
+                    
+                </div>
+                
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="header">
+                <h1>Pet Store API</h1>
+                <span class="version">v1.0.0</span>
+                
+                <p class="description">A simple pet store API for demonstration</p>
+                
+
+                
+                <div class="servers">
+                    <h3>Base URL</h3>
+                    
+                    <div class="server-url">https://api.petstore.com/v1</div>
+                    
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">Production server</div>
+                    
+                    
+                </div>
+                
+            </div>
+
+            <div class="endpoints-overview">
+                <h2>Endpoints</h2>
+
+                
+                <div class="tag-section">
+                    <h3>pets</h3>
+
+                    
+                    <div class="endpoint-card">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-get">GET</span>
+                            <code class="endpoint-path">/pets</code>
+                        </div>
+                        
+                        <div class="endpoint-summary">List all pets</div>
+                        
+                        <a href="get_pets.html" class="endpoint-link-button">
+                            View Details →
+                        </a>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-post">POST</span>
+                            <code class="endpoint-path">/pets</code>
+                        </div>
+                        
+                        <div class="endpoint-summary">Create a pet</div>
+                        
+                        <a href="post_pets.html" class="endpoint-link-button">
+                            View Details →
+                        </a>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <div class="endpoint-header">
+                            <span class="method-badge method-get">GET</span>
+                            <code class="endpoint-path">/pets/{petId}</code>
+                        </div>
+                        
+                        <div class="endpoint-summary">Get a pet by ID</div>
+                        
+                        <a href="get_pets_petId.html" class="endpoint-link-button">
+                            View Details →
+                        </a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            
+            <!-- ApiFlow Branding (FREE tier) -->
+            <footer class="apiflow-footer">
+                <div class="footer-content">
+                    <p>Documentation generated with <a href="https://github.com/Ilia01/apiflow" target="_blank" rel="noopener">ApiFlow</a></p>
+                    <p class="footer-upgrade">
+                        Want to remove this?
+                        <a href="https://gumroad.com/l/apiflow-pro" target="_blank" rel="noopener">Upgrade to PRO →</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script>
+        // Endpoint data for search
+        const endpoints = [{"deprecated": false, "description": "Returns a list of all pets in the store", "method": "GET", "operation_id": "listPets", "parameters": [{"description": "Maximum number of pets to return", "example": null, "in": "query", "name": "limit", "required": false, "schema": {"default": 20, "format": "int32", "type": "integer"}}], "path": "/pets", "request_body": null, "responses": [{"content": {"application/json": {"schema": {"items": {"$ref": "#/components/schemas/Pet"}, "type": "array"}}}, "description": "A list of pets", "status_code": "200"}, {"content": {}, "description": "Internal server error", "status_code": "500"}], "summary": "List all pets", "tags": ["pets"]}, {"deprecated": false, "description": "Add a new pet to the store", "method": "POST", "operation_id": "createPet", "parameters": [], "path": "/pets", "request_body": {"content": {"application/json": {"schema": {"$ref": "#/components/schemas/NewPet"}}}, "description": "Pet to add", "required": true}, "responses": [{"content": {"application/json": {"schema": {"$ref": "#/components/schemas/Pet"}}}, "description": "Pet created successfully", "status_code": "201"}, {"content": {}, "description": "Invalid input", "status_code": "400"}], "summary": "Create a pet", "tags": ["pets"]}, {"deprecated": false, "description": "Returns a single pet", "method": "GET", "operation_id": "getPetById", "parameters": [{"description": "ID of pet to return", "example": null, "in": "path", "name": "petId", "required": true, "schema": {"type": "string"}}], "path": "/pets/{petId}", "request_body": null, "responses": [{"content": {"application/json": {"schema": {"$ref": "#/components/schemas/Pet"}}}, "description": "Pet details", "status_code": "200"}, {"content": {}, "description": "Pet not found", "status_code": "404"}], "summary": "Get a pet by ID", "tags": ["pets"]}];
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/theme.js"></script>
+    
+</body>
+</html>

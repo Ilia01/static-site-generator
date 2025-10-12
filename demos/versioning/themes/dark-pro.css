@@ -1,0 +1,163 @@
+/*
+ * Dark Pro Theme for ApiFlow
+ * Modern dark theme with purple accents
+ * PRO license required
+ */
+
+:root {
+    /* Light mode variant (when toggled) - softer purple theme */
+    --bg-primary: #faf5ff;
+    --bg-secondary: #f3e8ff;
+    --bg-tertiary: #e9d5ff;
+
+    /* Text colors */
+    --text-primary: #3b0764;
+    --text-secondary: #6b21a8;
+    --text-tertiary: #581c87;
+
+    /* Borders */
+    --border-primary: #d8b4fe;
+    --border-secondary: #c4b5fd;
+
+    /* Purple accent colors */
+    --accent-primary: #9333ea;
+    --accent-hover: #7e22ce;
+
+    /* Shadows */
+    --shadow-light: rgba(147, 51, 234, 0.15);
+}
+
+[data-theme="dark"] {
+    /* Dark mode - primary dark purple theme */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #13131a;
+    --bg-tertiary: #1a1a24;
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #e4e4e7;
+    --border-primary: #27272a;
+    --border-secondary: #1f1f24;
+    --accent-primary: #a855f7;
+    --accent-hover: #c084fc;
+    --shadow-light: rgba(168, 85, 247, 0.15);
+}
+
+/* Enhanced method badges with glow effect */
+.method-get {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.method-post {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.method-put {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+.method-patch {
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+    box-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
+}
+
+.method-delete {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+/* Sidebar enhancements */
+.sidebar {
+    background: var(--bg-secondary);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar h2 {
+    color: var(--accent-primary);
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Glowing hover effects */
+.endpoint-card:hover {
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
+    border-color: var(--accent-primary);
+}
+
+.endpoint-link-button {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #9333ea 100%);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.endpoint-link-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+/* Enhanced code blocks */
+.code-block {
+    background: #0f0f14;
+    border: 1px solid #27272a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Search input enhancement */
+.search-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+}
+
+/* Header with gradient text */
+.header h1 {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Version badge with glow */
+.header .version {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #9333ea 100%);
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+/* Table enhancements */
+.param-table th {
+    background: var(--bg-tertiary);
+    border-color: var(--border-primary);
+}
+
+.param-table tr:hover {
+    background: rgba(168, 85, 247, 0.05);
+}
+
+/* Response status colors */
+.response-status.success {
+    color: #10b981;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.response-status.error {
+    color: #ef4444;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}

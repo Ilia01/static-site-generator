@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApiFlow Live Demos - Premium Themes & Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 3rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .demo-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .demo-preview {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-preview::after {
+            content: 'Click to View Demo →';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem 1.5rem 1rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .demo-card:hover .demo-preview::after {
+            opacity: 1;
+        }
+
+        .demo-dark-pro { background: linear-gradient(135deg, #0a0a0f 0%, #a855f7 100%); }
+        .demo-light-pro { background: linear-gradient(135deg, #ffffff 0%, #10b981 100%); }
+        .demo-modern { background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); }
+        .demo-versioning { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
+
+        .demo-content {
+            padding: 1.5rem;
+        }
+
+        .demo-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .demo-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .features-list li {
+            padding: 0.25rem 0;
+            color: #555;
+            font-size: 0.875rem;
+        }
+
+        .features-list li::before {
+            content: '✓ ';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .theme-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #f3f4f6;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6b7280;
+            margin-right: 0.5rem;
+        }
+
+        .theme-tag.pro {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .cta-section {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .cta-section p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin: 0 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            border: 2px solid #667eea;
+            margin: 0 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: #f3f4f6;
+        }
+
+        .comparison {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: white;
+        }
+
+        .comparison h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .comparison-item::before {
+            content: '✓';
+            margin-right: 0.5rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .demos-grid { grid-template-columns: 1fr; }
+            .btn-primary, .btn-secondary {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 ApiFlow Live Demos</h1>
+            <p>Experience the power of premium themes and features. See why developers choose ApiFlow over Swagger UI and expensive alternatives.</p>
+            <span class="badge">💎 PRO Features - $29 Launch Price</span>
+        </div>
+
+        <div class="demos-grid">
+            <!-- Dark Pro Theme Demo -->
+            <div class="demo-card" onclick="window.open('demos/dark-pro/index.html', '_blank')">
+                <div class="demo-preview demo-dark-pro"></div>
+                <div class="demo-content">
+                    <h3>Dark Pro Theme</h3>
+                    <span class="theme-tag pro">PRO</span>
+                    <p>Modern dark theme with purple accents and glowing effects</p>
+                    <ul class="features-list">
+                        <li>Deep dark backgrounds</li>
+                        <li>Purple gradient accents</li>
+                        <li>Glowing hover effects</li>
+                        <li>Perfect for dev tools</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Light Pro Theme Demo -->
+            <div class="demo-card" onclick="window.open('demos/light-pro/index.html', '_blank')">
+                <div class="demo-preview demo-light-pro"></div>
+                <div class="demo-content">
+                    <h3>Light Pro Theme</h3>
+                    <span class="theme-tag pro">PRO</span>
+                    <p>Clean professional light theme with emerald accents</p>
+                    <ul class="features-list">
+                        <li>Crisp white backgrounds</li>
+                        <li>Emerald green accents</li>
+                        <li>Professional typography</li>
+                        <li>Corporate-friendly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Modern Theme Demo -->
+            <div class="demo-card" onclick="window.open('demos/modern/index.html', '_blank')">
+                <div class="demo-preview demo-modern"></div>
+                <div class="demo-content">
+                    <h3>Modern Theme</h3>
+                    <span class="theme-tag pro">PRO</span>
+                    <p>Contemporary design with vibrant gradients</p>
+                    <ul class="features-list">
+                        <li>Vibrant multi-color gradients</li>
+                        <li>Backdrop blur effects</li>
+                        <li>Eye-catching design</li>
+                        <li>Perfect for consumer apps</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Version Management Demo -->
+            <div class="demo-card" onclick="window.open('demos/versioning/index.html', '_blank')">
+                <div class="demo-preview demo-versioning"></div>
+                <div class="demo-content">
+                    <h3>Version Management</h3>
+                    <span class="theme-tag pro">PRO</span>
+                    <p>Multiple API versions in one place with easy switching</p>
+                    <ul class="features-list">
+                        <li>Document v1, v2, v3...</li>
+                        <li>Dropdown version switcher</li>
+                        <li>Persistent selection</li>
+                        <li>Compare versions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <h3>Every Demo Includes (FREE + PRO Features)</h3>
+            <div class="comparison-grid">
+                <div class="comparison-item">Dark mode toggle</div>
+                <div class="comparison-item">Fuzzy search</div>
+                <div class="comparison-item">Code examples (3 languages)</div>
+                <div class="comparison-item">Responsive design</div>
+                <div class="comparison-item">Syntax highlighting</div>
+                <div class="comparison-item">Zero configuration</div>
+                <div class="comparison-item">Offline-ready</div>
+                <div class="comparison-item">Static HTML output</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Upgrade Your API Docs?</h2>
+            <p>Get 3 premium themes, version management, and PDF export for just $29 one-time.</p>
+            <a href="https://gumroad.com/l/apiflow-pro" class="btn-primary" target="_blank" rel="noopener">Buy PRO - $29 →</a>
+            <a href="https://github.com/Ilia01/apiflow" class="btn-secondary" target="_blank" rel="noopener">Try FREE Tier</a>
+        </div>
+    </div>
+</body>
+</html>

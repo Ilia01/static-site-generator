@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment API - Multi-Version Documentation</title>
+    <link rel="stylesheet" href="css/api-docs.css">
+
+    <!-- Premium Theme (PRO License) -->
+    <link rel="stylesheet" href="themes/modern.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>
+                <span>Payment API</span>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </h2>
+
+            <!-- VERSION SWITCHER (PRO FEATURE) -->
+            <div class="version-selector">
+                <label for="versionSelect">API Version:</label>
+                <select id="versionSelect" class="version-dropdown">
+                    <option value="v3" selected>v3.0.0 (Latest)</option>
+                    <option value="v2">v2.5.1</option>
+                    <option value="v1">v1.2.0 (Legacy)</option>
+                </select>
+                <div class="pro-badge">PRO</div>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Search endpoints..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <div id="searchResults" class="search-results"></div>
+            <div id="noResults" class="no-results">No results found</div>
+
+            <nav id="mainNav">
+                <!-- v3.0.0 endpoints -->
+                <div class="version-section" data-version="v3">
+                    <div class="tag-group">
+                        <div class="tag-name">payments</div>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-post">POST</span>
+                            <span>/v3/payments</span>
+                        </a>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-get">GET</span>
+                            <span>/v3/payments/{id}</span>
+                        </a>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-post">POST</span>
+                            <span>/v3/refunds</span>
+                        </a>
+                    </div>
+
+                    <div class="tag-group">
+                        <div class="tag-name">webhooks</div>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-post">POST</span>
+                            <span>/v3/webhooks</span>
+                        </a>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-delete">DELETE</span>
+                            <span>/v3/webhooks/{id}</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- v2.5.1 endpoints -->
+                <div class="version-section" data-version="v2" style="display: none;">
+                    <div class="tag-group">
+                        <div class="tag-name">payments</div>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-post">POST</span>
+                            <span>/v2/payments</span>
+                        </a>
+
+                        <a href="#" class="endpoint-link">
+                            <span class="method-badge method-get">GET</span>
+                            <span>/v2/payments/{id}</span>
+                        </a>
+                    </div>
+
+                    <div class="tag-group">
+                        <div class="tag-name">legacy</div>
+
+                        <a href="#" class="endpoint-link deprecated">
+                            <span class="method-badge method-post">POST</span>
+                            <span>/v2/charge</span>
+                            <span class="deprecated-badge">Deprecated</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- v1.2.0 endpoints -->
+                <div class="version-section" data-version="v1" style="display: none;">
+                    <div class="tag-group">
+                        <div class="tag-name">payments</div>
+
+                        <a href="#" class="endpoint-link deprecated">
+                            <span class="method-badge method-post">POST</span>
+                            <span>/v1/charge</span>
+                            <span class="deprecated-badge">Deprecated</span>
+                        </a>
+
+                        <a href="#" class="endpoint-link deprecated">
+                            <span class="method-badge method-get">GET</span>
+                            <span>/v1/transaction/{id}</span>
+                            <span class="deprecated-badge">Deprecated</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Version Banner -->
+            <div class="version-banner">
+                <div class="banner-content">
+                    <span class="banner-icon">🚀</span>
+                    <div>
+                        <strong>Multi-Version Documentation</strong>
+                        <p>This demo showcases ApiFlow's PRO version management feature. Switch between API versions seamlessly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header">
+                <h1>Payment API <span class="version-tag" id="currentVersionTag">v3.0.0</span></h1>
+
+                <p class="description" id="versionDescription">Modern payment processing API with webhooks and advanced features</p>
+
+                <div class="version-info-box">
+                    <h3>About Version Management (PRO Feature)</h3>
+                    <ul>
+                        <li>✓ Document multiple API versions in one place</li>
+                        <li>✓ Easy dropdown version switcher</li>
+                        <li>✓ Automatic version comparison</li>
+                        <li>✓ Show deprecated endpoints clearly</li>
+                        <li>✓ Smooth version transitions for developers</li>
+                    </ul>
+                </div>
+
+                <div class="servers">
+                    <h3>Base URL</h3>
+                    <div class="server-url" id="baseUrl">https://api.payment.com/v3</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;" id="serverDescription">Production server (Latest)</div>
+                </div>
+            </div>
+
+            <!-- v3 content -->
+            <div class="version-content" data-version="v3">
+                <div class="endpoints-overview">
+                    <h2>Endpoints (v3.0.0)</h2>
+
+                    <div class="tag-section">
+                        <h3>payments</h3>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-post">POST</span>
+                                <code class="endpoint-path">/v3/payments</code>
+                            </div>
+                            <div class="endpoint-summary">Create a new payment</div>
+                            <div class="new-badge">New in v3</div>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-get">GET</span>
+                                <code class="endpoint-path">/v3/payments/{id}</code>
+                            </div>
+                            <div class="endpoint-summary">Retrieve payment details</div>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-post">POST</span>
+                                <code class="endpoint-path">/v3/refunds</code>
+                            </div>
+                            <div class="endpoint-summary">Process a refund</div>
+                            <div class="new-badge">New in v3</div>
+                        </div>
+                    </div>
+
+                    <div class="tag-section">
+                        <h3>webhooks</h3>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-post">POST</span>
+                                <code class="endpoint-path">/v3/webhooks</code>
+                            </div>
+                            <div class="endpoint-summary">Register a webhook endpoint</div>
+                            <div class="new-badge">New in v3</div>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-delete">DELETE</span>
+                                <code class="endpoint-path">/v3/webhooks/{id}</code>
+                            </div>
+                            <div class="endpoint-summary">Delete a webhook</div>
+                            <div class="new-badge">New in v3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v2 content -->
+            <div class="version-content" data-version="v2" style="display: none;">
+                <div class="endpoints-overview">
+                    <h2>Endpoints (v2.5.1)</h2>
+
+                    <div class="migration-notice">
+                        <strong>⚠️ Maintenance Mode</strong>
+                        <p>v2 is in maintenance mode. Please migrate to v3 for new features and improvements.</p>
+                    </div>
+
+                    <div class="tag-section">
+                        <h3>payments</h3>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-post">POST</span>
+                                <code class="endpoint-path">/v2/payments</code>
+                            </div>
+                            <div class="endpoint-summary">Create a payment (v2)</div>
+                        </div>
+
+                        <div class="endpoint-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-get">GET</span>
+                                <code class="endpoint-path">/v2/payments/{id}</code>
+                            </div>
+                            <div class="endpoint-summary">Get payment by ID</div>
+                        </div>
+
+                        <div class="endpoint-card deprecated-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-post">POST</span>
+                                <code class="endpoint-path">/v2/charge</code>
+                            </div>
+                            <div class="endpoint-summary">Legacy charge endpoint</div>
+                            <div class="deprecated-badge">Deprecated</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- v1 content -->
+            <div class="version-content" data-version="v1" style="display: none;">
+                <div class="endpoints-overview">
+                    <h2>Endpoints (v1.2.0)</h2>
+
+                    <div class="migration-notice" style="background: #fee; border-color: #fcc;">
+                        <strong>🚨 End of Life</strong>
+                        <p>v1 will be sunset on December 31, 2024. All endpoints are deprecated. Migrate to v3 immediately.</p>
+                    </div>
+
+                    <div class="tag-section">
+                        <h3>payments (all deprecated)</h3>
+
+                        <div class="endpoint-card deprecated-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-post">POST</span>
+                                <code class="endpoint-path">/v1/charge</code>
+                            </div>
+                            <div class="endpoint-summary">Create charge (legacy)</div>
+                            <div class="deprecated-badge">Deprecated</div>
+                        </div>
+
+                        <div class="endpoint-card deprecated-card">
+                            <div class="endpoint-header">
+                                <span class="method-badge method-get">GET</span>
+                                <code class="endpoint-path">/v1/transaction/{id}</code>
+                            </div>
+                            <div class="endpoint-summary">Get transaction (legacy)</div>
+                            <div class="deprecated-badge">Deprecated</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+    <script>
+        // Endpoint data for search (simplified for demo)
+        const endpoints = [
+            {method: "POST", path: "/v3/payments", summary: "Create a new payment", tags: ["payments"]},
+            {method: "GET", path: "/v3/payments/{id}", summary: "Retrieve payment details", tags: ["payments"]},
+            {method: "POST", path: "/v3/refunds", summary: "Process a refund", tags: ["payments"]},
+            {method: "POST", path: "/v3/webhooks", summary: "Register a webhook endpoint", tags: ["webhooks"]},
+            {method: "DELETE", path: "/v3/webhooks/{id}", summary: "Delete a webhook", tags: ["webhooks"]}
+        ];
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/version-switcher.js"></script>
+
+    <script>
+        // Version switching logic
+        const versionSelect = document.getElementById('versionSelect');
+        const versionTag = document.getElementById('currentVersionTag');
+        const versionDescription = document.getElementById('versionDescription');
+        const baseUrl = document.getElementById('baseUrl');
+        const serverDescription = document.getElementById('serverDescription');
+
+        const versionData = {
+            'v3': {
+                tag: 'v3.0.0',
+                description: 'Modern payment processing API with webhooks and advanced features',
+                baseUrl: 'https://api.payment.com/v3',
+                serverDesc: 'Production server (Latest)'
+            },
+            'v2': {
+                tag: 'v2.5.1',
+                description: 'Stable payment API in maintenance mode',
+                baseUrl: 'https://api.payment.com/v2',
+                serverDesc: 'Production server (Maintenance)'
+            },
+            'v1': {
+                tag: 'v1.2.0',
+                description: 'Legacy API - End of Life December 2024',
+                baseUrl: 'https://api.payment.com/v1',
+                serverDesc: 'Production server (Deprecated)'
+            }
+        };
+
+        versionSelect.addEventListener('change', (e) => {
+            const selectedVersion = e.target.value;
+
+            // Hide all version sections
+            document.querySelectorAll('.version-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.querySelectorAll('.version-content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Show selected version
+            document.querySelectorAll(`[data-version="${selectedVersion}"]`).forEach(el => {
+                el.style.display = 'block';
+            });
+
+            // Update header info
+            const data = versionData[selectedVersion];
+            versionTag.textContent = data.tag;
+            versionDescription.textContent = data.description;
+            baseUrl.textContent = data.baseUrl;
+            serverDescription.textContent = data.serverDesc;
+
+            // Store preference
+            localStorage.setItem('selectedVersion', selectedVersion);
+        });
+
+        // Restore saved version
+        const savedVersion = localStorage.getItem('selectedVersion');
+        if (savedVersion && versionData[savedVersion]) {
+            versionSelect.value = savedVersion;
+            versionSelect.dispatchEvent(new Event('change'));
+        }
+    </script>
+</body>
+</html>

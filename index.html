@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApiFlow - Beautiful API Documentation from OpenAPI Specs</title>
-    <meta name="description" content="Generate gorgeous, searchable API documentation from your OpenAPI spec. Dark mode, code examples, and offline-ready. Free forever.">
+    <title>ApiFlow - Beautiful API Documentation Generator</title>
+    <meta name="description" content="Generate gorgeous, professional API documentation from OpenAPI specs. Premium themes, dark mode, and offline-ready. Free tier available.">
     <style>
         * {
             margin: 0;
@@ -16,39 +16,49 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #24292e;
+            background: #fafafa;
+        }
+
+        .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 0 2rem;
         }
 
+        /* Hero Section */
         .hero {
-            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            margin-bottom: 4rem;
+            padding: 6rem 0 4rem;
+            text-align: center;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            letter-spacing: -0.02em;
         }
 
         .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
             opacity: 0.95;
+            font-weight: 600;
         }
 
         .hero .subtitle {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             opacity: 0.9;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
@@ -60,18 +70,19 @@
         }
 
         .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
+            padding: 1.25rem 2.5rem;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.125rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s;
             display: inline-block;
+            cursor: pointer;
+            border: none;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
 
         .btn-primary {
@@ -80,64 +91,281 @@
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             color: white;
             border: 2px solid white;
+            backdrop-filter: blur(10px);
         }
 
-        .features {
-            background: white;
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 3rem;
+        .btn-pro {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
         }
 
-        .features h2 {
+        /* Features Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #24292e;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #18181b;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #71717a;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
         .feature {
             text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .feature h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: #667eea;
+            font-size: 1.375rem;
+            margin-bottom: 0.75rem;
+            color: #18181b;
+            font-weight: 700;
         }
 
         .feature p {
-            color: #586069;
-            font-size: 0.9375rem;
+            color: #71717a;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
-        .comparison {
+        /* Theme Showcase */
+        .themes {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .theme-card {
             background: white;
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            margin-bottom: 3rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.3s;
         }
 
-        .comparison h2 {
+        .theme-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+        }
+
+        .theme-preview {
+            height: 220px;
+            background: #1a1a24;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .theme-preview.dark-pro {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+            color: #a855f7;
+        }
+
+        .theme-preview.light-pro {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: #10b981;
+        }
+
+        .theme-preview.modern {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+        }
+
+        .theme-info {
+            padding: 1.5rem;
+        }
+
+        .theme-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #18181b;
+        }
+
+        .theme-info p {
+            color: #71717a;
+            margin-bottom: 1rem;
+        }
+
+        .theme-badge {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e4e4e7;
+            border-radius: 16px;
+            padding: 2.5rem;
             text-align: center;
-            font-size: 2rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        }
+
+        .pricing-card.featured {
+            border-color: #10b981;
+            box-shadow: 0 12px 40px rgba(16,185,129,0.2);
+            transform: scale(1.02);
+            background: white;
+        }
+
+        .pricing-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.375rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            z-index: 1;
+        }
+
+        .pricing-tier {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #52525b;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #18181b;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1.25rem;
+            color: #71717a;
+            font-weight: 500;
+        }
+
+        .pricing-description {
+            color: #71717a;
             margin-bottom: 2rem;
+            min-height: 3rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: #3f3f46;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .pricing-features li.disabled {
+            color: #a1a1aa;
+            opacity: 0.6;
+        }
+
+        .pricing-features li.disabled::before {
+            content: "✗";
+            color: #d1d5db;
+        }
+
+        .pricing-features strong {
+            color: #18181b;
+            font-weight: 700;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            background: #fafafa;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         table {
@@ -146,154 +374,377 @@
         }
 
         th, td {
-            padding: 1rem;
+            padding: 1.25rem;
             text-align: left;
-            border-bottom: 1px solid #e1e4e8;
+            border-bottom: 1px solid #e4e4e7;
         }
 
         th {
+            background: #f9fafb;
+            font-weight: 700;
+            color: #18181b;
+            font-size: 1.125rem;
+        }
+
+        td {
+            color: #3f3f46;
+        }
+
+        td:first-child {
             font-weight: 600;
+            color: #18181b;
+        }
+
+        td strong {
+            color: #18181b;
+            font-weight: 700;
+        }
+
+        .check { color: #10b981; font-weight: bold; font-size: 1.25rem; }
+        .cross { color: #ef4444; font-weight: bold; font-size: 1.25rem; }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.375rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        .footer {
+            background: #18181b;
+            color: #a1a1aa;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #e4e4e7;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
             color: #667eea;
         }
 
-        .check { color: #28a745; font-weight: bold; }
-        .cross { color: #d73a49; font-weight: bold; }
-
-        .footer {
-            text-align: center;
-            color: white;
-            opacity: 0.8;
-            margin-top: 4rem;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
 
             .hero .tagline {
-                font-size: 1.25rem;
+                font-size: 1.375rem;
             }
 
-            .features, .comparison {
-                padding: 2rem 1.5rem;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .feature-grid {
+            .pricing-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1.02);
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
             <h1>ApiFlow</h1>
-            <div class="tagline">Beautiful API docs in 5 minutes</div>
-            <div class="subtitle">Generate gorgeous, searchable API documentation from your OpenAPI spec</div>
+            <div class="tagline">Beautiful API Documentation in Minutes</div>
+            <div class="subtitle">Generate gorgeous, professional API docs from your OpenAPI spec. Choose from premium themes, or start free forever.</div>
 
             <div class="cta-buttons">
-                <a href="https://github.com/Ilia01/apiflow" class="btn btn-primary">Get Started →</a>
-                <a href="https://Ilia01.github.io/apiflow-demo/""a class="btn btn-secondary">View Demo</a>
+                <a href="https://github.com/Ilia01/apiflow" class="btn btn-primary">Get Started Free →</a>
+                <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+                <a href="demo-index.html" class="btn btn-secondary">Live Demos</a>
             </div>
         </div>
+    </div>
 
-        <div class="features">
-            <h2>Why ApiFlow?</h2>
+    <!-- Features Section -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Why Developers Choose ApiFlow</h2>
+            <p class="section-subtitle">Everything you need for professional API documentation, with zero hassle</p>
+
             <div class="feature-grid">
                 <div class="feature">
-                    <div class="feature-icon">✨</div>
-                    <h3>Beautiful Design</h3>
-                    <p>GitHub-inspired UI that developers love</p>
+                    <div class="feature-icon">🎨</div>
+                    <h3>3 Premium Themes</h3>
+                    <p>Dark Pro, Light Pro, and Modern themes with professional gradients and animations</p>
                 </div>
 
                 <div class="feature">
                     <div class="feature-icon">🔍</div>
-                    <h3>Smart Search</h3>
-                    <p>Fuzzy search finds what you need instantly</p>
+                    <h3>Smart Fuzzy Search</h3>
+                    <p>Find any endpoint instantly with intelligent search that handles typos</p>
                 </div>
 
                 <div class="feature">
                     <div class="feature-icon">🌙</div>
-                    <h3>Dark Mode</h3>
-                    <p>Easy on the eyes, works everywhere</p>
+                    <h3>Dark Mode Built-in</h3>
+                    <p>Persistent dark mode that works across all pages, easy on developer eyes</p>
                 </div>
 
                 <div class="feature">
                     <div class="feature-icon">💻</div>
                     <h3>Code Examples</h3>
-                    <p>curl, Python, JavaScript - auto-generated</p>
+                    <p>Auto-generated curl, Python, and JavaScript examples for every endpoint</p>
                 </div>
 
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
-                    <h3>Static Output</h3>
-                    <p>No server needed, works offline</p>
+                    <h3>Static & Fast</h3>
+                    <p>Pure HTML output. No server needed. Works offline. Lightning fast.</p>
                 </div>
 
                 <div class="feature">
-                    <div class="feature-icon">🆓</div>
-                    <h3>Free Forever</h3>
-                    <p>Open source, no hidden costs</p>
+                    <div class="feature-icon">🔒</div>
+                    <h3>No Vendor Lock-in</h3>
+                    <p>Own your docs. Host anywhere. No monthly subscriptions if you don't want them.</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="comparison">
-            <h2>How it compares</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>ApiFlow</th>
-                        <th>Swagger UI</th>
-                        <th>ReadMe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Price</td>
-                        <td>Free</td>
-                        <td>Free</td>
-                        <td>$99/mo</td>
-                    </tr>
-                    <tr>
-                        <td>Beautiful</td>
-                        <td class="check">✓</td>
-                        <td class="cross">✗</td>
-                        <td class="check">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Dark Mode</td>
-                        <td class="check">✓</td>
-                        <td class="cross">✗</td>
-                        <td class="check">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Search</td>
-                        <td class="check">✓</td>
-                        <td class="cross">✗</td>
-                        <td class="check">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Static Output</td>
-                        <td class="check">✓</td>
-                        <td class="cross">✗</td>
-                        <td class="cross">✗</td>
-                    </tr>
-                    <tr>
-                        <td>Works Offline</td>
-                        <td class="check">✓</td>
-                        <td class="cross">✗</td>
-                        <td class="cross">✗</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Theme Showcase -->
+    <div class="section themes">
+        <div class="container">
+            <h2 class="section-title">Premium Themes</h2>
+            <p class="section-subtitle">Choose from 3 professionally designed themes included with PRO</p>
+
+            <div class="theme-grid">
+                <div class="theme-card">
+                    <div class="theme-preview dark-pro">🌙</div>
+                    <div class="theme-info">
+                        <h3>Dark Pro</h3>
+                        <p>Modern dark theme with purple accents and glowing effects. Perfect for developer tools.</p>
+                        <span class="theme-badge">PRO</span>
+                    </div>
+                </div>
+
+                <div class="theme-card">
+                    <div class="theme-preview light-pro">☀️</div>
+                    <div class="theme-info">
+                        <h3>Light Pro</h3>
+                        <p>Clean professional design with emerald accents. Ideal for enterprise APIs.</p>
+                        <span class="theme-badge">PRO</span>
+                    </div>
+                </div>
+
+                <div class="theme-card">
+                    <div class="theme-preview modern">✨</div>
+                    <div class="theme-info">
+                        <h3>Modern</h3>
+                        <p>Vibrant gradients with animated elements. Eye-catching for consumer products.</p>
+                        <span class="theme-badge">PRO</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="footer">
-            <p>Made with ❤️ for developers who deserve beautiful docs</p>
-            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Open source • MIT License</p>
+    <!-- Pricing Section -->
+    <div class="section pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Honest Pricing</h2>
+            <p class="section-subtitle">Start free forever. Upgrade for $29 when you want premium themes.</p>
+
+            <div class="pricing-grid">
+                <!-- FREE Tier -->
+                <div class="pricing-card">
+                    <div class="pricing-tier">Free</div>
+                    <div class="pricing-price">$0<span>/forever</span></div>
+                    <div class="pricing-description">Perfect for side projects and open source</div>
+
+                    <ul class="pricing-features">
+                        <li>Basic documentation generator</li>
+                        <li>Default theme</li>
+                        <li>Dark mode toggle</li>
+                        <li>Fuzzy search</li>
+                        <li>Code examples (3 languages)</li>
+                        <li>Static HTML output</li>
+                        <li class="disabled">Premium themes</li>
+                        <li class="disabled">Remove branding</li>
+                        <li class="disabled">Priority support</li>
+                    </ul>
+
+                    <a href="https://github.com/Ilia01/apiflow" class="btn" style="width: 100%; background: #667eea; color: white;">Get Started</a>
+                </div>
+
+                <!-- PRO Tier (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="pricing-tier">PRO</div>
+                    <div class="pricing-price">$29<span>/one-time</span></div>
+                    <div class="pricing-description">Everything you need for professional docs</div>
+
+                    <ul class="pricing-features">
+                        <li>Everything in FREE, plus:</li>
+                        <li><strong>3 premium themes</strong></li>
+                        <li><strong>Version management</strong></li>
+                        <li><strong>Remove branding</strong></li>
+                        <li><strong>PDF export</strong></li>
+                        <li>Email support</li>
+                        <li>Lifetime updates</li>
+                        <li class="disabled">Commercial license (contact for pricing)</li>
+                        <li class="disabled">Custom features (contact for pricing)</li>
+                    </ul>
+
+                    <a href="https://gumroad.com/l/apiflow-pro" class="btn btn-pro" style="width: 100%;" target="_blank" rel="noopener">Buy PRO - $29 →</a>
+                    <p style="margin-top: 1rem; font-size: 0.875rem; color: #71717a;">
+                        Launch pricing - will increase to $49 after first 100 customers
+                    </p>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="pricing-card">
+                    <div class="pricing-tier">Enterprise</div>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-description">For teams and agencies</div>
+
+                    <ul class="pricing-features">
+                        <li>Everything in PRO, plus:</li>
+                        <li><strong>Commercial license</strong></li>
+                        <li><strong>Priority support</strong></li>
+                        <li><strong>Custom feature development</strong></li>
+                        <li><strong>Bulk licenses</strong></li>
+                        <li>1-on-1 setup call</li>
+                        <li>Feature requests priority</li>
+                        <li>SLA guarantee</li>
+                    </ul>
+
+                    <a href="mailto:support@yourdomain.com?subject=Enterprise%20License%20Inquiry" class="btn" style="width: 100%; background: #18181b; color: white;">Contact Us →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="section comparison">
+        <div class="container">
+            <h2 class="section-title">How ApiFlow Compares</h2>
+            <p class="section-subtitle">Better value than expensive alternatives</p>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>ApiFlow PRO</th>
+                            <th>Swagger UI</th>
+                            <th>ReadMe.com</th>
+                            <th>Stoplight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Price</td>
+                            <td><strong>$49 one-time</strong></td>
+                            <td>Free</td>
+                            <td>$99/month</td>
+                            <td>$79/month</td>
+                        </tr>
+                        <tr>
+                            <td>Premium themes</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Static output</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Works offline</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Dark mode</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Search</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Beautiful design</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Annual cost</td>
+                            <td><strong>$0</strong></td>
+                            <td>$0</td>
+                            <td><strong>$1,188</strong></td>
+                            <td><strong>$948</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Create Beautiful API Docs?</h2>
+            <p>Start with the free tier, upgrade to PRO when you need premium themes</p>
+
+            <div class="cta-buttons">
+                <a href="https://github.com/Ilia01/apiflow" class="btn btn-primary">Start Free →</a>
+                <a href="https://gumroad.com/l/apiflow-pro" class="btn btn-secondary" target="_blank" rel="noopener">Buy PRO - $29</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <p>Made with ❤️ for developers who deserve beautiful docs without paying $99/month</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://github.com/Ilia01/apiflow">GitHub</a> •
+                <a href="https://github.com/Ilia01/apiflow/issues">Support</a> •
+                <a href="https://github.com/Ilia01/apiflow/blob/main/LICENSE">MIT License</a>
+            </p>
         </div>
     </div>
 </body>

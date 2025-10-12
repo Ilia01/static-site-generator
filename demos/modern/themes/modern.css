@@ -1,0 +1,436 @@
+/*
+ * Modern Theme for ApiFlow
+ * Contemporary design with vibrant animated gradients and modern cards
+ * PRO license required
+ */
+
+:root {
+    /* Vibrant gradient accent system (theme-specific) */
+    --accent-primary: #6366f1;
+    --accent-secondary: #8b5cf6;
+    --accent-tertiary: #ec4899;
+    --accent-hover: #4f46e5;
+
+    /* Modern color refinements */
+    --bg-primary: #fafafa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f5f5f5;
+    --text-primary: #18181b;
+    --text-secondary: #71717a;
+    --text-tertiary: #27272a;
+    --border-primary: #e4e4e7;
+    --border-secondary: #d4d4d8;
+    --shadow-light: rgba(99, 102, 241, 0.15);
+
+    /* Animated background gradient colors */
+    --gradient-bg-1: rgba(99, 102, 241, 0.08);
+    --gradient-bg-2: rgba(139, 92, 246, 0.06);
+    --gradient-bg-3: rgba(236, 72, 153, 0.04);
+}
+
+[data-theme="dark"] {
+    /* Dark mode gradient accents */
+    --accent-primary: #818cf8;
+    --accent-secondary: #a78bfa;
+    --accent-tertiary: #f0abfc;
+    --accent-hover: #a5b4fc;
+
+    /* Dark mode refinements */
+    --bg-primary: #09090b;
+    --bg-secondary: #18181b;
+    --bg-tertiary: #27272a;
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #e4e4e7;
+    --border-primary: #3f3f46;
+    --border-secondary: #52525b;
+    --shadow-light: rgba(129, 140, 248, 0.2);
+}
+
+/* Animated gradient background */
+body {
+    background:
+        radial-gradient(circle at 20% 30%, var(--gradient-bg-1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, var(--gradient-bg-2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, var(--gradient-bg-3) 0%, transparent 50%),
+        var(--bg-primary);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 50% 50%;
+    }
+
+    25% {
+        background-position: 45% 55%;
+    }
+
+    50% {
+        background-position: 55% 45%;
+    }
+
+    75% {
+        background-position: 45% 45%;
+    }
+}
+
+/* Dark mode animated gradient background */
+[data-theme="dark"] body {
+    /* Updated gradient colors for dark mode */
+    --gradient-bg-1: rgba(129, 140, 248, 0.08);
+    --gradient-bg-2: rgba(167, 139, 250, 0.06);
+    --gradient-bg-3: rgba(240, 171, 252, 0.04);
+}
+
+
+/* Modern sidebar with backdrop blur */
+.sidebar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-right: 1px solid rgba(99, 102, 241, 0.15);
+    box-shadow:
+        4px 0 24px rgba(0, 0, 0, 0.04),
+        inset -1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .sidebar {
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    box-shadow:
+        4px 0 24px rgba(0, 0, 0, 0.3),
+        inset -1px 0 0 rgba(129, 140, 248, 0.1);
+}
+
+/* Gradient sidebar title */
+.sidebar h2 span {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    background-size: 200% 200%;
+    animation: gradientFlow 8s ease infinite;
+}
+
+@keyframes gradientFlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Vibrant method badges with animated gradients */
+.method-get,
+.method-post,
+.method-put,
+.method-patch,
+.method-delete {
+    font-weight: 800;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.method-get::after,
+.method-post::after,
+.method-put::after,
+.method-patch::after,
+.method-delete::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.method-get:hover::after,
+.method-post:hover::after,
+.method-put:hover::after,
+.method-patch:hover::after,
+.method-delete:hover::after {
+    left: 100%;
+}
+
+.method-get {
+    box-shadow: 0 2px 8px rgba(97, 175, 254, 0.3);
+}
+
+.method-post {
+    box-shadow: 0 2px 8px rgba(73, 204, 144, 0.3);
+}
+
+.method-put {
+    box-shadow: 0 2px 8px rgba(252, 161, 48, 0.3);
+}
+
+.method-patch {
+    box-shadow: 0 2px 8px rgba(80, 227, 194, 0.3);
+}
+
+.method-delete {
+    box-shadow: 0 2px 8px rgba(249, 62, 62, 0.3);
+}
+
+/* Modern card design with depth */
+.endpoint-card {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-primary);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.endpoint-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: gradientSlide 3s linear infinite;
+}
+
+@keyframes gradientSlide {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.endpoint-card:hover::before {
+    opacity: 1;
+}
+
+.endpoint-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+        0 16px 48px -8px rgba(99, 102, 241, 0.2),
+        0 8px 16px -4px rgba(99, 102, 241, 0.1),
+        0 0 0 1px rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Vibrant gradient button */
+.endpoint-link-button {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    background-size: 200% 200%;
+    font-weight: 800;
+    letter-spacing: 0.025em;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+}
+
+.endpoint-link-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.endpoint-link-button:hover::before {
+    transform: translateX(100%);
+}
+
+.endpoint-link-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 12px 32px rgba(99, 102, 241, 0.4),
+        0 0 0 1px rgba(99, 102, 241, 0.3);
+    background-position: 100% 50%;
+}
+
+/* Animated search with gradient focus ring */
+.search-input {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-primary);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    width: 100%;
+}
+
+.search-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.08),
+        0 4px 12px -2px rgba(99, 102, 241, 0.12);
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+/* Modern header */
+.header h1 {
+    color: var(--text-primary);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+}
+
+.header .version {
+    background: var(--accent-primary);
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: white;
+}
+
+/* Modern code blocks */
+.code-block {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s ease;
+    overflow-x: auto;
+}
+
+.code-block:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Modern table design */
+.param-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.param-table th {
+    background: var(--bg-tertiary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    padding: 1rem 0.75rem;
+    border-bottom: 2px solid var(--border-primary);
+    text-align: left;
+}
+
+.param-table tr {
+    transition: all 0.2s ease;
+    background: var(--bg-secondary);
+}
+
+.param-table tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+.param-table td {
+    padding: 0.875rem 0.75rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+/* Enhanced response items */
+.response-item {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-primary);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.response-item:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.response-status.success {
+    font-weight: 800;
+    color: #10b981;
+}
+
+.response-status.error {
+    font-weight: 800;
+    color: #ef4444;
+}
+
+/* Modern code tabs */
+.code-tab {
+    font-weight: 700;
+    position: relative;
+    transition: all 0.2s ease;
+    color: var(--text-secondary);
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+}
+
+.code-tab:hover {
+    background: var(--bg-tertiary);
+}
+
+.code-tab.active {
+    color: var(--accent-primary);
+    font-weight: 800;
+}
+
+.code-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+    background-size: 200% 100%;
+    animation: gradientSlide 3s linear infinite;
+}
+
+/* Modern section headers */
+.section h2 {
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: var(--accent-primary);
+    border-radius: 1px;
+}

@@ -1,0 +1,216 @@
+/*
+ * Light Pro Theme for ApiFlow
+ * Clean professional light theme with emerald accents
+ * PRO license required
+ */
+
+:root {
+    /* Light background palette */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+
+    /* Text colors */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #1e293b;
+
+    /* Borders */
+    --border-primary: #e2e8f0;
+    --border-secondary: #cbd5e1;
+
+    /* Emerald accent colors */
+    --accent-primary: #10b981;
+    --accent-hover: #059669;
+
+    /* Shadows */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #e2e8f0;
+    --border-primary: #334155;
+    --border-secondary: #475569;
+    --accent-primary: #34d399;
+    --accent-hover: #6ee7b7;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+}
+
+/* Professional method badges */
+.method-get {
+    background: #3b82f6;
+    font-weight: 600;
+}
+
+.method-post {
+    background: #10b981;
+    font-weight: 600;
+}
+
+.method-put {
+    background: #f59e0b;
+    font-weight: 600;
+}
+
+.method-patch {
+    background: #14b8a6;
+    font-weight: 600;
+}
+
+.method-delete {
+    background: #ef4444;
+    font-weight: 600;
+}
+
+/* Clean sidebar */
+.sidebar {
+    background: var(--bg-secondary);
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2 {
+    color: var(--accent-primary);
+    font-weight: 700;
+}
+
+/* Subtle card effects */
+.endpoint-card {
+    background: var(--bg-primary);
+    transition: all 0.3s ease;
+}
+
+.endpoint-card:hover {
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+}
+
+.endpoint-link-button {
+    background: var(--accent-primary);
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.endpoint-link-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Professional code blocks */
+.code-block {
+    background: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced search */
+.search-input {
+    border: 2px solid var(--border-primary);
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.08);
+}
+
+/* Clean header */
+.header h1 {
+    color: var(--text-primary);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.header .version {
+    background: var(--accent-primary);
+    font-weight: 600;
+}
+
+/* Professional tables */
+.param-table {
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.param-table th {
+    background: var(--bg-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.param-table tr:hover {
+    background: rgba(16, 185, 129, 0.03);
+}
+
+/* Tab styling */
+.code-tab {
+    font-weight: 600;
+}
+
+.code-tab.active {
+    font-weight: 700;
+}
+
+/* Response styling */
+.response-item {
+    background: var(--bg-primary);
+    border-width: 2px;
+}
+
+.response-status.success {
+    color: #059669;
+}
+
+.response-status.error {
+    color: #dc2626;
+}
+
+/* Section headers */
+.section h2 {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Tag styling */
+.tag-section h3 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+/* Back link */
+.back-link {
+    font-weight: 600;
+}
+
+.back-link:hover {
+    color: var(--accent-hover);
+}
+
+/* Clean scrollbar (light theme) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
