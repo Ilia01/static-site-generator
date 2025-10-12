@@ -1,8 +1,65 @@
+# Python
 __pycache__/
 *.pyc
-.DS_Store
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-log.txt
+
+# Virtual environment
 venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Generated documentation
 api-docs/
+
+# License cache (local testing)
+.apiflow/
+
+# Test artifacts
 src/test/
 src/utils/
 src/main.py
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Configuration (should be user-created)
+apiflow.json
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.production
+*.env
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Internal documentation (private to product owner)
+HONEST_ASSESSMENT.md
+LAUNCH_NOW.md
+LAUNCH_CHECKLIST.md
+GUMROAD_SETUP.md
+SECURITY_SETUP.md

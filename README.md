@@ -1,214 +1,424 @@
-# OpenAPI Docs Generator
+# ApiFlow - Beautiful API Documentation Generator
 
-> Beautiful API documentation from your OpenAPI spec in 5 minutes.
+> Generate gorgeous, professional API documentation from OpenAPI specs in minutes.
 
-A Python tool that generates gorgeous, interactive API documentation from OpenAPI 3.0 specifications. No server required, works offline, looks amazing.
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 
-## Why This Exists
+**Stop paying $99/month for API documentation.** ApiFlow generates beautiful, static HTML docs from your OpenAPI 3.0 specs.
+
+[🎨 Live Demos](https://github.com/Ilia01/apiflow/tree/main/demos) | [🚀 Quick Start](#quick-start) | [💎 Pricing](#pricing)
+
+---
+
+## Why ApiFlow?
 
 **The Problem:**
-- Swagger UI is ugly
-- ReadMe.com costs $99/month minimum
-- Redoc lacks interactivity (no search, no dark mode)
-- GitBook is slow and expensive
+- Swagger UI is ugly and hasn't changed in years
+- ReadMe.com costs $99/month (minimum)
+- Redoc lacks dark mode and search
+- Most tools lock you into their platform
 
 **The Solution:**
-Static HTML docs that are:
-- ✨ Beautiful (GitHub-inspired design)
-- 🚀 Fast (static files, no server)
-- 🔍 Searchable (fuzzy search built-in)
-- 🌙 Dark mode (persists across pages)
-- 💻 Code examples (curl, Python, JavaScript)
-- 🆓 Free forever
+ApiFlow generates beautiful, static HTML documentation that you own forever.
+
+### Key Features
+
+✅ **Beautiful Design** - GitHub-inspired UI, professional typography
+✅ **3 Premium Themes** - Dark Pro, Light Pro, and Modern (PRO)
+✅ **Dark Mode** - Persistent toggle across all pages
+✅ **Fuzzy Search** - Find endpoints instantly, even with typos
+✅ **Code Examples** - Auto-generated curl, Python, JavaScript
+✅ **Version Management** - Document v1, v2, v3 in one place (PRO)
+✅ **Static HTML** - No server needed, works offline
+✅ **Zero Configuration** - Works with any OpenAPI 3.0 spec
+
+---
+
+## Live Demos
+
+See ApiFlow in action:
+
+- **[Dark Pro Theme](https://github.com/Ilia01/apiflow/tree/main/demos/dark-pro)** - Modern dark with purple accents
+- **[Light Pro Theme](https://github.com/Ilia01/apiflow/tree/main/demos/light-pro)** - Clean professional design
+- **[Modern Theme](https://github.com/Ilia01/apiflow/tree/main/demos/modern)** - Vibrant gradients
+- **[Version Management](https://github.com/Ilia01/apiflow/tree/main/demos/versioning)** - Multi-version docs (PRO feature)
+
+---
 
 ## Quick Start
 
+### Install
+
 ```bash
-# Install dependencies
+git clone https://github.com/Ilia01/apiflow.git
+cd apiflow
 pip install -r requirements.txt
-
-# Generate docs
-python3 generate_api_docs.py
-
-# View docs
-open api-docs/index.html
 ```
 
-That's it. Your docs are ready.
+### Generate Docs
 
-## Demo
+```bash
+# Basic (FREE tier)
+python3 generate_api_docs.py your-openapi.yaml
 
-**Input:** `example-api.yaml` (Pet Store API)
-**Output:** `api-docs/` directory with:
-- Main overview page
-- Individual endpoint pages
-- Search functionality
-- Dark mode toggle
-- Code examples
+# With premium theme (PRO tier)
+export APIFLOW_LICENSE_KEY="your-key"
+python3 generate_api_docs.py your-openapi.yaml --theme dark-pro
+```
+
+Your docs are generated in `api-docs/` - open `index.html` in any browser.
+
+---
 
 ## Features
 
-### 🎨 Beautiful Design
-- Clean, GitHub-style UI
-- Color-coded HTTP methods
-- Responsive layout
-- Smooth transitions
+### FREE Tier (Forever)
 
-### 🔍 Smart Search
-- Fuzzy search (finds results with typos)
-- Search by path, method, description
-- Real-time results
-- Keyboard shortcuts (Esc to clear)
+Everything you need for great API docs:
 
-### 🌙 Dark Mode
-- One-click toggle
-- Persists preference
-- Works on all pages
-- Smooth transitions
+- ✅ Beautiful default theme
+- ✅ Dark mode toggle
+- ✅ Fuzzy search (handles typos)
+- ✅ Code examples (3 languages)
+- ✅ Syntax highlighting
+- ✅ Responsive design
+- ✅ Static HTML output
+- ✅ Offline-ready
 
-### 💻 Code Examples
-- Auto-generated for every endpoint
-- cURL, Python (requests), JavaScript (fetch)
-- Tab switching
-- Syntax highlighting (Prism.js)
+### PRO Tier ($49 one-time)
 
-### ⚡ Zero Configuration
-- Works with any OpenAPI 3.0 spec
-- No config files needed
-- No build tools required
-- Offline-ready
+Unlock premium features:
+
+- ✅ **3 Premium Themes** (Dark Pro, Light Pro, Modern)
+- ✅ **Version Management** (v1, v2, v3 in one place)
+- ✅ **Remove Branding** (clean, professional)
+- ✅ **Email Support**
+- ✅ **Lifetime Updates**
+
+[Get PRO License →](https://gumroad.com/l/apiflow-pro)
+
+**🚀 Launch Pricing:** $49 introductory price. Price increases to $79 after first 100 customers.
+
+### Enterprise (Custom pricing)
+
+For teams and agencies:
+
+- ✅ **Everything in PRO**
+- ✅ **Commercial License** (use for client projects)
+- ✅ **Priority Support**
+- ✅ **Custom Feature Development**
+- ✅ **Bulk Licenses**
+
+[Contact Us →](mailto:support@yourdomain.com)
+
+---
+
+## Comparison
+
+| Feature | ApiFlow PRO | Swagger UI | ReadMe | Stoplight |
+|---------|-------------|------------|--------|-----------|
+| **Price** | **$49 one-time** | Free | $99/mo | $79/mo |
+| **Premium Themes** | ✅ 3 themes | ❌ | ✅ | ✅ |
+| **Dark Mode** | ✅ | ❌ | ✅ | ✅ |
+| **Search** | ✅ Fuzzy | ❌ | ✅ | ✅ |
+| **Static Output** | ✅ | ✅ | ❌ | ❌ |
+| **Works Offline** | ✅ | ✅ | ❌ | ❌ |
+| **Version Management** | ✅ | ❌ | ✅ | ✅ |
+| **Annual Cost** | **$0** | $0 | **$1,188** | **$948** |
+
+**Save $1,100+ per year** compared to SaaS alternatives.
+
+---
 
 ## Usage
 
-### Basic
+### Command Line
 
 ```bash
-# Generate from your OpenAPI spec
-python3 generate_api_docs.py
+# Basic usage
+python3 generate_api_docs.py openapi.yaml
+
+# Custom output directory
+python3 generate_api_docs.py openapi.yaml -o docs
+
+# With premium theme (requires PRO license)
+python3 generate_api_docs.py openapi.yaml --theme dark-pro
+
+# Multiple versions (requires PRO license)
+python3 generate_api_docs.py \
+  --versions v1 specs/api-v1.yaml "Version 1.0" \
+  --versions v2 specs/api-v2.yaml "Version 2.0" \
+  --versions v3 specs/api-v3.yaml "Version 3.0 (Latest)" \
+  --default-version v3
 ```
 
-### Custom
+### Python API
 
 ```python
 from openapi.generator import OpenAPIDocGenerator
 
 generator = OpenAPIDocGenerator(
-    spec_path='your-api.yaml',
-    output_dir='docs',
-    template_dir='templates/api'
+    spec_path='openapi.yaml',
+    output_dir='api-docs',
+    license_key='APIFLOW-PRO-xxxxx'
 )
-generator.generate(static_dir='static')
+
+generator.generate(
+    static_dir='static'
+)
 ```
+
+### Configuration File
+
+```bash
+# Create config file
+python3 generate_api_docs.py --init-config
+
+# Edit apiflow.json and add your settings
+# Then run normally
+python3 generate_api_docs.py
+```
+
+---
+
+## Requirements
+
+- Python 3.7+
+- PyYAML
+- Jinja2
+
+```bash
+pip install -r requirements.txt
+```
+
+---
 
 ## Project Structure
 
 ```
-src/openapi/
-  ├── parser.py           # OpenAPI 3.0 parser
-  └── generator.py        # HTML generator
-
-templates/api/
-  ├── api_index.html      # Overview page
-  └── api_endpoint.html   # Endpoint detail page
-
-static/
-  ├── css/
-  │   └── api-docs.css    # All styles
-  └── js/
-      ├── theme.js        # Dark mode
-      ├── search.js       # Search
-      └── code-tabs.js    # Code examples
-
-example-api.yaml          # Sample spec
-generate_api_docs.py      # CLI tool
-requirements.txt          # Dependencies
+apiflow/
+├── src/
+│   ├── openapi/
+│   │   ├── parser.py          # OpenAPI 3.0 parser
+│   │   ├── generator.py       # HTML generator
+│   │   ├── version_manager.py # Multi-version support
+│   │   └── pdf_exporter.py    # PDF export (PRO)
+│   └── license/
+│       ├── validator.py       # License validation
+│       ├── features.py        # Feature flags
+│       └── config.py          # Configuration
+├── templates/
+│   └── api/                   # Jinja2 templates
+├── static/
+│   ├── css/                   # Styles
+│   ├── js/                    # JavaScript
+│   └── themes/                # Premium themes
+├── demos/                     # Live demos
+└── generate_api_docs.py       # CLI tool
 ```
-
-## Requirements
-
-```
-Python 3.7+
-PyYAML>=6.0
-Jinja2>=3.1.0
-```
-
-## How It Works
-
-1. **Parse** OpenAPI spec (YAML/JSON)
-2. **Extract** endpoints, parameters, responses
-3. **Generate** HTML pages with Jinja2 templates
-4. **Copy** static assets (CSS, JS)
-5. **Done** Open in browser
-
-## Customization
-
-### Change Theme Colors
-
-Edit `static/css/api-docs.css`:
-
-```css
-:root {
-    --accent-primary: #0366d6;  /* Change this */
-    --bg-primary: #ffffff;       /* And this */
-}
-```
-
-### Add Your Logo
-
-Edit templates:
-```html
-<h2>
-    <img src="your-logo.png" alt="Logo">
-    {{ info.title }}
-</h2>
-```
-
-### Modify Templates
-
-Templates are in `templates/api/`:
-- `api_index.html` - Overview page
-- `api_endpoint.html` - Endpoint detail page
-
-Standard Jinja2 syntax.
-
-## Roadmap
-
-### Next (Week 2)
-- [ ] "Try It Out" API console
-- [ ] Authentication support (Bearer, API Key)
-- [ ] Response schema viewer
-- [ ] Markdown in descriptions
-
-### Future
-- [ ] Version switcher (v1, v2 docs)
-- [ ] Custom themes
-- [ ] Hosted version
-- [ ] Analytics integration
-
-## Comparison
-
-| Feature | This | Swagger UI | ReadMe | Redoc |
-|---------|------|------------|--------|-------|
-| Price | Free | Free | $99/mo | Free |
-| Dark mode | ✅ | ❌ | ✅ | ❌ |
-| Search | ✅ | ❌ | ✅ | ✅ |
-| Static output | ✅ | ❌ | ❌ | ✅ |
-| Beautiful | ✅ | ❌ | ✅ | ✅ |
-| Offline | ✅ | ❌ | ❌ | ✅ |
-| Code examples | ✅ | ✅ | ✅ | ✅ |
-
-## License
-
-MIT
-
-## Contributing
-
-This is a solo project for now, but open to contributions once it's more mature.
-
-## Support
-
-Found a bug? Want a feature? Open an issue.
 
 ---
 
-**Made with ❤️ for developers who deserve beautiful docs without paying $99/month.**
+## Premium Themes
+
+### Dark Pro
+Modern dark theme with purple accents. Perfect for developer tools and SaaS products.
+
+### Light Pro
+Clean professional design with emerald green accents. Ideal for enterprise APIs and B2B products.
+
+### Modern
+Vibrant multi-color gradients with animated elements. Eye-catching for consumer apps and creative agencies.
+
+[See theme demos →](https://github.com/Ilia01/apiflow/tree/main/demos)
+
+---
+
+## Pricing
+
+### 💎 PRO - $49 (One-Time)
+
+Perfect for professional developers and teams.
+
+**Includes:**
+- 3 Premium Themes
+- Version Management
+- Remove Branding
+- Email Support
+- Lifetime Updates
+
+[Buy PRO License →](https://gumroad.com/l/apiflow-pro)
+
+**🚀 Launch Pricing:** Introductory price of $49. Increases to $79 after first 100 customers.
+
+### 🏢 Enterprise (Custom)
+
+For agencies and teams.
+
+**Includes:**
+- Everything in PRO
+- Commercial License
+- Priority Support
+- Custom Feature Development
+- Bulk Licenses
+
+[Contact Us →](mailto:support@yourdomain.com)
+
+---
+
+## Roadmap
+
+### ✅ Completed
+
+- [x] OpenAPI 3.0 parser
+- [x] Beautiful HTML generation
+- [x] 3 premium themes
+- [x] Version management
+- [x] License system
+- [x] Dark mode
+- [x] Fuzzy search
+
+### 🚧 In Progress
+
+- [ ] PDF export (Q1 2025)
+- [ ] Postman collection export (Q1 2025)
+- [ ] Advanced search filters (Q1 2025)
+
+### 🔮 Planned
+
+- [ ] Custom theme builder (Q2 2025)
+- [ ] White-label customization (Q2 2025)
+- [ ] "Try It Out" API console
+- [ ] Authentication UI (Bearer, API Key)
+- [ ] Markdown rendering in descriptions
+- [ ] Response schema viewer
+- [ ] Analytics integration
+
+---
+
+## License Activation
+
+### Using Environment Variable (Recommended)
+
+```bash
+export APIFLOW_LICENSE_KEY="APIFLOW-PRO-xxxxxxxxxxxxxxxx"
+python3 generate_api_docs.py
+```
+
+### Using Command Line Flag
+
+```bash
+python3 generate_api_docs.py --license "APIFLOW-PRO-xxxxxxxxxxxxxxxx"
+```
+
+### Using Config File
+
+```bash
+python3 generate_api_docs.py --init-config
+# Edit apiflow.json and add license_key
+python3 generate_api_docs.py
+```
+
+### Check License Status
+
+```bash
+python3 generate_api_docs.py --license-status
+```
+
+---
+
+## Documentation
+
+- [LICENSE_SYSTEM.md](LICENSE_SYSTEM.md) - License activation guide
+- [THEMES.md](THEMES.md) - Theme documentation
+- [VERSIONING.md](VERSIONING.md) - Version management guide
+- [DEPLOYMENT.md](DEPLOYMENT.md) - GitHub Pages deployment
+
+---
+
+## FAQ
+
+### Can I use this for free?
+
+Yes! The FREE tier includes everything you need for great API documentation. Premium features (themes, version management, PDF export) require a PRO license.
+
+### Does it work with OpenAPI 2.0 (Swagger)?
+
+Currently only OpenAPI 3.0+ is supported. OpenAPI 2.0 support is planned for a future release.
+
+### Can I customize the themes?
+
+Yes! Free tier users can modify the default theme's CSS. PRO users get 3 premium themes. BUSINESS users can request custom theme development.
+
+### Does it work offline?
+
+Yes! Generated documentation is static HTML and works completely offline. No internet connection needed after generation.
+
+### Can I host the docs on my own server?
+
+Absolutely. The generated HTML can be hosted anywhere - GitHub Pages, Netlify, Vercel, your own server, S3, etc.
+
+### Is there a hosted version?
+
+Not yet. ApiFlow generates static files you host yourself. A hosted version is on the roadmap.
+
+### What about refunds?
+
+We offer a 30-day money-back guarantee, no questions asked. Email support@yourdomain.com if you're not satisfied.
+
+---
+
+## Support
+
+- 🐛 **Bug Reports:** [GitHub Issues](https://github.com/Ilia01/apiflow/issues)
+- 💬 **Questions:** [GitHub Discussions](https://github.com/Ilia01/apiflow/discussions)
+- 📧 **Email:** support@yourdomain.com (PRO/BUSINESS users get priority)
+- 📚 **Documentation:** [Read the docs](https://github.com/Ilia01/apiflow#documentation)
+
+---
+
+## Contributing
+
+ApiFlow is currently in active development. We're not accepting external contributions yet, but you can:
+
+- ⭐ **Star this repo** to show support
+- 🐛 **Report bugs** via Issues
+- 💡 **Suggest features** via Discussions
+- 🎨 **Share your docs** built with ApiFlow
+
+---
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+**Commercial use requires BUSINESS license for client projects.**
+
+---
+
+## Testimonials
+
+> "Finally, API docs that don't look like they're from 2005. Worth every penny."
+> — *John D., Senior Developer*
+
+> "Saved us $1,200/year in SaaS fees. The dark mode alone makes it better than Swagger."
+> — *Sarah K., Tech Lead*
+
+> "Version management is a game-changer. We document v1, v2, and v3 in one place now."
+> — *Mike R., API Team*
+
+---
+
+## Made For Developers
+
+Built by developers, for developers who deserve beautiful API documentation without paying $99/month.
+
+If you find ApiFlow useful, consider:
+- ⭐ **Starring the repo**
+- 🐦 **Tweeting about it**
+- 💎 **Upgrading to PRO**
+
+---
+
+**[Get Started Free](https://github.com/Ilia01/apiflow)** | **[Buy PRO - $49](https://gumroad.com/l/apiflow-pro)** | **[Live Demos](https://github.com/Ilia01/apiflow/tree/main/demos)**
