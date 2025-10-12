@@ -63,3 +63,6 @@ LAUNCH_NOW.md
 LAUNCH_CHECKLIST.md
 GUMROAD_SETUP.md
 SECURITY_SETUP.md
+
+# License key generator (CRITICAL - never commit this!)
+generate_license_key.py

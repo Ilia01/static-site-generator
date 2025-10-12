@@ -93,6 +93,7 @@ Unlock premium features:
 - ✅ **3 Premium Themes** (Dark Pro, Light Pro, Modern)
 - ✅ **Version Management** (v1, v2, v3 in one place)
 - ✅ **Remove Branding** (clean, professional)
+- ✅ **PDF Export** (professional documentation exports)
 - ✅ **Email Support**
 - ✅ **Lifetime Updates**
 
@@ -245,6 +246,7 @@ Perfect for professional developers and teams.
 - 3 Premium Themes
 - Version Management
 - Remove Branding
+- PDF Export
 - Email Support
 - Lifetime Updates
 
@@ -276,12 +278,12 @@ For agencies and teams.
 - [x] 3 premium themes
 - [x] Version management
 - [x] License system
+- [x] PDF export
 - [x] Dark mode
 - [x] Fuzzy search
 
 ### 🚧 In Progress
 
-- [ ] PDF export (Q1 2025)
 - [ ] Postman collection export (Q1 2025)
 - [ ] Advanced search filters (Q1 2025)
 
