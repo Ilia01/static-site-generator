@@ -10,7 +10,7 @@
     const currentTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', currentTheme);
     if (themeIcon) {
-        themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+        updateIcon(themeIcon, currentTheme);
     }
 
     themeToggle.addEventListener('click', () => {
@@ -20,7 +20,17 @@
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         if (themeIcon) {
-            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            updateIcon(themeIcon, newTheme);
         }
     });
+
+    function updateIcon(icon, theme) {
+        if (theme === 'dark') {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    }
 })();
