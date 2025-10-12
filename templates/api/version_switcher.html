@@ -1,0 +1,29 @@
+{% if versions and versions|length > 1 %}
+<!-- Version Switcher (PRO Feature) -->
+<div class="version-switcher">
+    <div class="version-dropdown">
+        <button class="version-selector-button" id="versionSelectorButton" aria-haspopup="true" aria-expanded="false">
+            <span>{{ default_version_label or 'Select Version' }}</span>
+        </button>
+        <div class="version-dropdown-menu" role="menu">
+            {% for v in versions %}
+            <div class="version-option"
+                 role="menuitem"
+                 data-version="{{ v.version }}"
+                 data-label="{{ v.label }}"
+                 {% if v.is_default %}data-default="true"{% endif %}>
+                <span>{{ v.label }}</span>
+                {% if v.is_default %}
+                <span class="version-badge">Default</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Hidden data for JS -->
+<script id="versionData" type="application/json">
+{{ versions | tojson }}
+</script>
+{% endif %}
